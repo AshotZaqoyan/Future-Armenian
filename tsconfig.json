@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+	  "target": "es5",
+	  "module": "es6",
+	  "outDir": "dist",
+	  "moduleResolution": "node",
+	  "paths": {
+		"*": ["./node_modules/*"]
+	  }
+	}
+  }
+  
