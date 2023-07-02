@@ -1,13 +1,356 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Future Armenian</title>
 	<link rel="stylesheet" href="src/css/style.css">
 	<link rel="icon" type="image/x-icon" href="src/img/FutureArmenian.ico">
 </head>
+
 <body>
+	<div class="bgtransparent hide" id="bgtransparent">
+		<div style="display: flex; justify-content: right;">
+			<div class="circle" id="close"><img src="src/img/close.svg" alt="" class="close"></div>
+			<div class="windowElement" id="windowElement">
+			</div>
+		</div>
+	</div>
+	<div class="startdiv" id="startdiv">
+		<div class="fleximg">
+			<img src="src/img/fut.svg" class="fut">
+			<p class="starttext">Համակարգչային ծրագիրը իրականացնում է առաջին համահայկական քաղաքացիական Համաժողովի
+				մասնակիցների
+				վիճակահանությունը՝ ապահովելով թափանցիկություն և հասարակության բոլոր շերտերի ներկայացվածություն։
+				<br><br>
+			</p>
+			<button class="button_start" id="btn_start">Սկսել</button>
+			<p class="starttext2">
+				Ծրագրի ստեղծմանը մասնակցել են՝
+				<br>-Առաջատար Տեխնոլոգիաների Ձեռնարկությունների Միությունը (UATE),
+				<br>-Վարդենիսի ավագ դպրոցի «Արմաթ» ինժեներական լաբորատորիան (ArmathShine),
+				<br><br>
+				Ծրագրի ստուգումը իրականացրել է Հայաստանի Ամերիկյան Համալսարանը (AUA),
+				<br><br>
+				Վիճակահանության սոցիոլոգիական ընտրանքը կազմել է Breavis խորհրդատվական ընկերությունը:
+			</p>
+			<div class="aligncentr">
+				<img src="src/img/FA-logo.png">
+				<img src="src/img/uate-logo.png">
+				<img src="src/img/armath.png">
+				<img src="src/img/shine.png" class="armathshine">
+				<img src="src/img/aualogo 1.png">
+				<img src="src/img/Breavis_logo 1.png">
+			</div>
+		</div>
+		<div>
+			<img class="elementleft" src="src/img/element-left.png">
+			<img class="elementright" src="src/img/element-right.png">
+		</div>
+	</div>
+	<br><br>
+	<div class="hide" id="result">
+		<img src="src/img/fut.svg" class="conimg" style="margin-top: 10px;">
+		<br><br>
+		<h1 style="color: #00605F;">Ընտրության արդյունքներ</h1>
+		<br>
+		<table class="styled-table-result">
+			<thead>
+				<tr>
+					<th>Country</th>
+					<th>Gender</th>
+					<th>Education</th>
+					<th>Area</th>
+					<th>Code</th>
+					<th>AGEGroup</th>
+					<th>RegionFinal</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>OYF9</td>
+					<td>18-30</td>
+					<td>Tavush</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>MFD1</td>
+					<td>31-45</td>
+					<td>Kotayk</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>QJB8</td>
+					<td>46-60</td>
+					<td>Gegharkunik</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>LLL7</td>
+					<td>31-45</td>
+					<td>Ararat</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>JLT9</td>
+					<td>46-60</td>
+					<td>Armavir</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>USQ7</td>
+					<td>61+</td>
+					<td>Kotayk</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>FTF3</td>
+					<td>46-60</td>
+					<td>Gegharkunik</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>XAX7</td>
+					<td>31-45</td>
+					<td>Ararat</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>IDD0</td>
+					<td>18-30</td>
+					<td>Kotayk</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>QTY3</td>
+					<td>18-30</td>
+					<td>Gegharkunik</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>VQD8</td>
+					<td>18-30</td>
+					<td>Armavir</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>SXQ8</td>
+					<td>18-30</td>
+					<td>Gegharkunik</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>RJP6</td>
+					<td>18-30</td>
+					<td>Armavir</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>ISN5</td>
+					<td>31-45</td>
+					<td>Syunik</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>NUV0</td>
+					<td>31-45</td>
+					<td>Syunik</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>PEN1</td>
+					<td>18-30</td>
+					<td>Aragatsotn</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>NNQ3</td>
+					<td>31-45</td>
+					<td>Kotayk</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>BTI9</td>
+					<td>31-45</td>
+					<td>Tavush</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>ZRX5</td>
+					<td>31-45</td>
+					<td>Kotayk</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>LXW5</td>
+					<td>18-30</td>
+					<td>Kotayk</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>VJU3</td>
+					<td>31-45</td>
+					<td>Kotayk</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>TPA8</td>
+					<td>31-45</td>
+					<td>Shirak</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>ZPU7</td>
+					<td>46-60</td>
+					<td>Ararat</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>OGO3</td>
+					<td>46-60</td>
+					<td>Kotayk</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>ZWV7</td>
+					<td>46-60</td>
+					<td>Tavush</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>OSS2</td>
+					<td>46-60</td>
+					<td>Tavush</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>NBN8</td>
+					<td>31-45</td>
+					<td>Kotayk</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>ILQ0</td>
+					<td>61+</td>
+					<td>Tavush</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Female</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>UEV4</td>
+					<td>31-45</td>
+					<td>Shirak</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Rural</td>
+					<td>TAS9</td>
+					<td>31-45</td>
+					<td>Ararat</td>
+				</tr>
+				<tr>
+					<td>Armenia</td>
+					<td>Male</td>
+					<td>University or postgraduate</td>
+					<td>Urban</td>
+					<td>PDK8</td>
+					<td>18-30</td>
+					<td>Kotayk</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<script src="dist/renderer.js"></script> <!-- Update the script source -->
 </body>
+
 </html>
