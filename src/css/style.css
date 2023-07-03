@@ -316,7 +316,7 @@ input {
 }
 
 #table-container {
-
+	margin: 0 15px;
 	overflow: auto;
 	width: auto;
 	height: auto;
@@ -332,7 +332,7 @@ input {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	padding: 29px 30px 30px 30px;
+	padding: 29px 20px 30px 20px;
 }
 
 
@@ -412,7 +412,7 @@ input {
 	height: 40px;
 	border: none;
 	color: #ffffff;
-	margin-top: 20px;
+	margin-top: 15px;
 	font-size: 18px;
 	font-family: Montserrat arm;
 	font-style: normal;
@@ -469,11 +469,12 @@ input {
 	font-weight: bold;
 	color: #009879;
 }
+
 .result {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	
+
 }
 
 /* result end*/
@@ -481,3 +482,13 @@ input {
 .hide {
 	display: none;
 }
+
+.next-back {
+	display: flex;
+	max-width: 100%;
+    max-height: 100%;
+}
+.next-back-btn{
+	width: 20px;
+}
+
