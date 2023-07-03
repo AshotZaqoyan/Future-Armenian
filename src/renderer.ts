@@ -20,19 +20,14 @@ export function start() {
 </div>
 <div class="next_box"><button class="btn_next" id="btn_next">Հաջորդը</button></div>
 `);
-	document.getElementById('btn_next').addEventListener('click', (event) => {
+	document.getElementById('btn_next').addEventListener('click', () => {
 		createwindow("auto", "auto", `
 <img src="src/img/back.svg" alt="back" class="btn_back" id="back"><div class="shownumberh">Ընտրության մեթոդաբանություն</div><div class="shownumberp">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի <b style="color: #009879;">201</b></div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn" id="nextPage" style="transform: rotate(180deg);"></div><button class="methodButton" id="methodButton">Հաստատել</button>
 `);
 		document.getElementById('back').addEventListener('click', start)
-		document.getElementById('methodButton').addEventListener('click', (event) => {
-			document.getElementById('result').classList.remove("hide");
-			document.getElementById('result').classList.add("result");
-			document.getElementById("bgtransparent").classList.add("hide")
-			document.getElementById("startdiv").classList.add("hide")
-		})
+
 		analysiss()
 	});
 };
 document.getElementById('btn_start').addEventListener('click', start);
-document.getElementById("close").addEventListener("click", (even: Event) => { (<HTMLInputElement>document.getElementById("bgtransparent")).classList.add("hide") })
+document.getElementById("close").addEventListener("click", () => { (<HTMLInputElement>document.getElementById("bgtransparent")).classList.add("hide") })
