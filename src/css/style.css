@@ -412,7 +412,7 @@ input {
 	height: 40px;
 	border: none;
 	color: #ffffff;
-	margin-top: 15px;
+	margin-top: 10px;
 	font-size: 18px;
 	font-family: Montserrat arm;
 	font-style: normal;
@@ -486,9 +486,25 @@ input {
 .next-back {
 	display: flex;
 	max-width: 100%;
-    max-height: 100%;
-}
-.next-back-btn{
-	width: 20px;
+	max-height: 100%;
 }
 
+.next-back-btn {
+	width: 20px;
+}
+.dots-div{
+	display: flex;
+	margin-top: 15px;
+}
+.dot{
+	
+	border-radius: 100%;
+	width: 15px;
+	height: 15px;
+	background: #b8b8b8;
+	margin: 0 5px;
+}
+
+.dot-a{
+	background: #8a8a8a;
+}
