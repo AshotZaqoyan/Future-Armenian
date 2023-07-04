@@ -1,13 +1,64 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Future Armenian</title>
 	<link rel="stylesheet" href="src/css/style.css">
 	<link rel="icon" type="image/x-icon" href="src/img/FutureArmenian.ico">
 </head>
+
 <body>
+	<div class="bgtransparent hide" id="bgtransparent">
+		<div style="display: flex; justify-content: right;">
+			<div class="circle" id="close"><img src="src/img/close.svg" alt="" class="close"></div>
+			<div class="windowElement" id="windowElement">
+			</div>
+		</div>
+	</div>
+	<div class="startdiv" id="startdiv">
+		<div class="fleximg">
+			<img src="src/img/fut.svg" class="fut">
+			<p class="starttext">Համակարգչային ծրագիրը իրականացնում է առաջին համահայկական քաղաքացիական Համաժողովի
+				մասնակիցների
+				վիճակահանությունը՝ ապահովելով թափանցիկություն և հասարակության բոլոր շերտերի ներկայացվածություն։
+				<br><br>
+			</p>
+			<button class="button_start" id="btn_start">Սկսել</button>
+			<p class="starttext2">
+				Ծրագրի ստեղծմանը մասնակցել են՝
+				<br>-Առաջատար Տեխնոլոգիաների Ձեռնարկությունների Միությունը (UATE),
+				<br>-Վարդենիսի ավագ դպրոցի «Արմաթ» ինժեներական լաբորատորիան (ArmathShine),
+				<br><br>
+				Ծրագրի ստուգումը իրականացրել է Հայաստանի Ամերիկյան Համալսարանը (AUA),
+				<br><br>
+				Վիճակահանության սոցիոլոգիական ընտրանքը կազմել է Breavis խորհրդատվական ընկերությունը:
+			</p>
+			<div class="aligncentr">
+				<img src="src/img/FA-logo.png">
+				<img src="src/img/uate-logo.png">
+				<img src="src/img/armath.png">
+				<img src="src/img/shine.png" class="armathshine">
+				<img src="src/img/aualogo 1.png">
+				<img src="src/img/Breavis_logo 1.png">
+			</div>
+		</div>
+		<div>
+			<img class="elementleft" src="src/img/element-left.png">
+			<img class="elementright" src="src/img/element-right.png">
+		</div>
+	</div>
+	<br><br>
+	<div class="hide" id="result">
+		<img src="src/img/fut.svg" class="conimg" style="margin-top: 10px;">
+		<br>
+		<h1 style="color: #00605F;">Ընտրության արդյունքներ</h1>
+		<br>
+		<table class="styled-table-result" id="styled-table-result">
+		</table>
+	</div>
 	<script src="dist/renderer.js"></script> <!-- Update the script source -->
 </body>
+
 </html>

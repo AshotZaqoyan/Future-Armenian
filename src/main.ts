@@ -24,7 +24,7 @@ function createWindow() {
 	mainWindow.loadURL(indexPath);
 
 	// Remove the menu bar (optional)
-	mainWindow.removeMenu();
+	//mainWindow.removeMenu();
 
 	// Open DevTools (optional)
 	mainWindow.webContents.openDevTools();
