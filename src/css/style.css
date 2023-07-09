@@ -130,13 +130,21 @@ body {
 	height: 40px;
 	flex-shrink: 0;
 	border-radius: 38px;
-	background: #0D938C;
+	background-color: #60bbb6;
+
 	color: #FFF;
 	font-size: 18px;
 	font-family: Montserrat arm;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+}
+
+.active {
+	background: #0D938C;
+	color: #FFF;
+	font-weight: bold;
+	transition: 0.3s;
 }
 
 /* start window end */
@@ -156,7 +164,7 @@ body {
 	width: 585px;
 	height: 413px;
 	border-radius: 0.5rem;
-	box-shadow: 0px 5px 20px rgba(49, 104, 146, 0.25);
+	box-shadow: 0px 0px 13px 3px rgba(74 114 145 /0.25);
 	margin-top: 10px;
 }
 
@@ -219,24 +227,23 @@ body {
 	}
 }
 
-.active {
-	background-color: #4AE16E;
-	color: #FFF;
-	font-weight: bold;
-	transition: 0.3s;
-}
 
 .inp_box {
-	width: 585px;
-	height: 61px;
-	margin-top: 25px;
+	width: 570px;
+	height: 57px;
 	padding: 15px 25px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	color: #777;
 	border-radius: 0.5rem;
-	box-shadow: 0px 5px 20px rgba(49, 104, 146, 0.25);
+	box-shadow: 0px 5px 20px 10px #72a5a442;
+	position: fixed;
+	left: 50%;
+	background: #fff;
+	transform: translate(-50%, 0);
+	margin-top: 2px;
+
 }
 
 .inp_p {
@@ -360,8 +367,9 @@ input {
 	min-width: 400px;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	margin: auto;
-	margin-top: 10px;
+	margin-top: 70px;
 	max-width: 90%;
+
 }
 
 .styled-table thead tr {
@@ -485,19 +493,22 @@ input {
 
 .next-back {
 	display: flex;
-	max-width: 100%;
-	max-height: 100%;
+	max-width: 80vw;
+	max-height: 70vh;
 }
 
 .next-back-btn {
 	width: 20px;
+	box-sizing: content-box;
 }
-.dots-div{
+
+.dots-div {
 	display: flex;
-	margin-top: 15px;
+	margin-top: 5px;
 }
-.dot{
-	
+
+.dot {
+
 	border-radius: 100%;
 	width: 15px;
 	height: 15px;
@@ -505,6 +516,14 @@ input {
 	margin: 0 5px;
 }
 
-.dot-a{
+.dot-a {
 	background: #8a8a8a;
+}
+
+#error-div {
+	margin-top: 3px;
+}
+
+.errorText {
+	color: rgb(250, 71, 71);
 }

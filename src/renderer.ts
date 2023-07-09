@@ -1,7 +1,8 @@
-import { analysiss } from "./js/Analysis";
 import { createwindow } from "./js/window";
+import { upload } from "./js/Upload"
+
 export function start() {
-	createwindow("70vw", "80vh", `
+	createwindow("70vw", "60vh", `
 <div class="container" id="upcontainer">
 	<div class="card">
 		<div class="card-body" id="upcard-bod">
@@ -16,18 +17,16 @@ export function start() {
 			<div class="card-subtitle" id="TypeError"></div>
 		</div>
 	</div>
-	<div class="inp_box"><p class="inp_p">Մուտքագրել մարդկանց թվաքանակը</p><input type="number" min="1" class="inp" id="inp" placeholder="200"></div>
 </div>
-<div class="next_box"><button class="btn_next" id="btn_next">Հաջորդը</button></div>
+<div class="next_box"><button class="btn_next" id="btn_next" disabled>Հաջորդը</button></div>
 `);
-	document.getElementById('btn_next').addEventListener('click', () => {
-		createwindow("auto", "auto", `
-<img src="src/img/back.svg" alt="back" class="btn_back" id="back"><div class="shownumberh">Ընտրության մեթոդաբանություն</div><div class="shownumberp">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի <b style="color: #009879;">201</b></div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn" id="nextPage" style="transform: rotate(180deg);"></div><div class="dots-div" id="dots-div"></div><button class="methodButton" id="methodButton">Հաստատել</button>
-`);
-		document.getElementById('back').addEventListener('click', start)
 
-		analysiss()
-	});
+	let GetName = <HTMLInputElement>document.getElementById("FileUpload");
+	let Button = <HTMLInputElement>document.getElementById("btn_next");
+	let inputnumber = <HTMLInputElement>document.getElementById("inp");
+	
+	GetName.addEventListener("change", (event: Event) => { upload(GetName, Button) })
 };
+
 document.getElementById('btn_start').addEventListener('click', start);
 document.getElementById("close").addEventListener("click", () => { (<HTMLInputElement>document.getElementById("bgtransparent")).classList.add("hide") })
