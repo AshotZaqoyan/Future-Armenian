@@ -2,6 +2,7 @@ import { start } from "../renderer";
 import { methodology } from "./methodology";
 import { saveData } from "./data";
 import { addtables } from "./methodologyTable";
+import { createwindow } from "./window";
 
 const xlsx = require('xlsx');
 
@@ -47,6 +48,11 @@ export function analysiss(GetName: any) {
 						sheetNameJSON[sheetName].push(property);
 						delete result[property];
 					}
+				}
+				if (sheetNameJSON[sheetName].length===0){
+					start()
+					document.getElementById("TypeError").innerText="Ձեր վերբեռնած Excel ֆայլում մարդկանց տրված չէ եզակի կոդը որը թույլ կտա տարբերակել մարդկանց";
+					throw new Error('promise chain cancelled because there was no unique code (sheetName)'); 
 				}
 
 				// Create the table element
@@ -113,6 +119,7 @@ export function analysiss(GetName: any) {
 			}
 			saveData("./src/data/sheetNames.json", sheetNameJSON)
 			//document.getElementById("methodButton").addEventListener("click", (even: Event) => { checking(datajson, savedNumbers) });
+			createwindow("auto", "auto", `<img src="src/img/back.svg" alt="back" class="btn_back" id="back"><div class="shownumberh">Ընտրության մեթոդաբանություն</div><div class="shownumberp">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի <b style="color: #009879;">201</b></div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn" id="nextPage" style="transform: rotate(180deg);"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="methodButton" id="methodButton">Հաստատել</button>`);
 			document.getElementById('back').addEventListener('click', start)
 			addtables(tables)
 			methodology()
