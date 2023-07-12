@@ -35,7 +35,7 @@ export function addtables(tables: string[]) {
 				const pageDiv: HTMLElement = document.createElement("div");
 				pageDiv.setAttribute("class", "page");
 				pageDiv.setAttribute("id", "page" + i);
-				pageDiv.innerHTML = `<div class="inp_box"><p class="inp_p">Մուտքագրել մարդկանց թվաքանակը</p><input type="number" min="1" class="inp" id="${i}" placeholder="200"></div>` + num[i - 1]
+				pageDiv.innerHTML = `<div class="inp-box"><p class="inp-p">Մուտքագրել մարդկանց թվաքանակը</p><input type="number" min="1" class="inp" id="${i}" placeholder="200"></div>` + num[i - 1]
 				pagesDiv.appendChild(pageDiv);
 
 				const errorText: HTMLElement = document.createElement("p");

@@ -18,11 +18,11 @@ export function start() {
 		</div>
 	</div>
 </div>
-<div class="next_box"><button class="btn_next" id="btn_next" disabled>Հաջորդը</button></div>
+<div class="next-box"><button class="btn-next" id="btn-next" disabled>Հաջորդը</button></div>
 `);
 
 	let filePath = <HTMLInputElement>document.getElementById("FileUpload");
-	let Button = <HTMLButtonElement>document.getElementById("btn_next");
+	let Button = <HTMLButtonElement>document.getElementById("btn-next");
 	
 	filePath.addEventListener("change", (event: Event) => { upload(filePath.files, Button) })
 };

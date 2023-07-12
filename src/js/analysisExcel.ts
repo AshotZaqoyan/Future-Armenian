@@ -52,7 +52,7 @@ export function analysisExcel(filePath:FileList) {
 				if (sheetNameJSON[sheetName].length===0){
 					start()
 					document.getElementById("TypeError").innerText="Ձեր վերբեռնած Excel ֆայլում մարդկանց տրված չէ եզակի կոդը որը թույլ կտա տարբերակել մարդկանց";
-					throw new Error('promise chain cancelled because there was no unique code (sheetName)'); 
+					throw new Error(`promise chain cancelled because there was no unique code (${sheetName})`); 
 				}
 
 				// Create the table element
@@ -118,8 +118,8 @@ export function analysisExcel(filePath:FileList) {
 				tables.push(table.outerHTML)
 			}
 			saveData("./src/data/sheetNames.json", sheetNameJSON)
-			//document.getElementById("methodButton").addEventListener("click", (even: Event) => { checking(datajson, savedNumbers) });
-			createwindow("auto", "auto", `<img src="src/img/back.svg" alt="back" class="btn_back" id="back"><div class="shownumberh">Ընտրության մեթոդաբանություն</div><div class="shownumberp">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի <b style="color: #009879;">201</b></div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn" id="nextPage" style="transform: rotate(180deg);"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="methodButton" id="methodButton">Հաստատել</button>`);
+			//document.getElementById("method-button").addEventListener("click", (even: Event) => { checking(datajson, savedNumbers) });
+			createwindow("auto", "auto", `<img src="src/img/back.svg" alt="back" class="btn-back" id="back"><div class="show-number-h">Ընտրության մեթոդաբանություն</div><div class="show-number-p">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի <b style="color: #009879;">201</b></div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn" id="nextPage" style="transform: rotate(180deg);"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="method-button" id="method-button">Հաստատել</button>`);
 			document.getElementById('back').addEventListener('click', start)
 			addtables(tables)
 			getMethodology()
@@ -165,7 +165,7 @@ export function analysisExcel(filePath:FileList) {
 	
 			return table;
 		}
-		document.getElementById('methodButton').addEventListener('click', () => {
+		document.getElementById('method-button').addEventListener('click', () => {
 			document.getElementById('result').classList.remove("hide");
 			document.getElementById('result').classList.add("result");
 			document.getElementById("bgtransparent").classList.add("hide");

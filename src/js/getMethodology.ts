@@ -2,7 +2,7 @@ import {saveData} from './editData'
 import { methodologyChecker } from './methodologyChecker';
 
 export function getMethodology() {
-	document.getElementById("methodButton").addEventListener('click', () => {
+	document.getElementById("method-button").addEventListener('click', () => {
 		let tables = document.getElementsByClassName("styled-table");
 		let data=[]
 		for (let i = 0; i < tables.length; i++) {

@@ -9,7 +9,7 @@ function pushError(error:string, pageNumber:number) {
 export function methodologyChecker() {
 	const sheetPath = readData('./src/data/methodology.json');
 	sheetPath.then((sheetData) => {
-		let pageNumber=[]
+		let pagesWithErrors=[]
 		for (let i = 0; sheetData.length > i; i++) {
 			let errors = []
 			let tf = true;
@@ -33,18 +33,18 @@ export function methodologyChecker() {
 				}
 			} else {
 				pushError("Խնդրում ենք մուտքագրել մարդկանց թվաքանակը (0-ից մեծ)", i + 1)
-				pageNumber.push(i+1)
+				pagesWithErrors.push(i+1)
 				tf=false
 			}
 			if (tf) {
 				if (errors.length !== 0) {
-					pageNumber.push(i+1)
+					pagesWithErrors.push(i+1)
 					pushError(`Խնդրում ենք Ներմուծել ${errors.join(', ')} շարքի/շարքերի<br>թվերը այնպես որ նրանց գումարը հավասարլ ինին ${numPeople}-ի`, i + 1)
 				} else { pushError(``, i + 1) }
 			}
 		}
-		if(pageNumber.length!==0){
-			showPage(Math.min.apply(Math, pageNumber) )
+		if(pagesWithErrors.length!==0){
+			showPage(Math.min.apply(Math, pagesWithErrors) )
 		}else{
 			(<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide")
 			document.getElementById("startdiv").classList.add("hide")

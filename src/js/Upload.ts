@@ -9,7 +9,7 @@ export function upload(filePath: FileList, Button: HTMLButtonElement) {
 		TypeError.innerText = "";
 			Button.removeAttribute("disabled");
 			Button.classList.add("active");
-			document.getElementById('btn_next').addEventListener('click', () => {
+			document.getElementById('btn-next').addEventListener('click', () => {
 				analysisExcel(filePath)
 				
 			});
