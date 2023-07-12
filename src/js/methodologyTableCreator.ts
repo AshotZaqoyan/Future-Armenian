@@ -22,15 +22,15 @@ export function showPage(pageNumber: number): void {
 }
 
 export function addtables(tables: string[]) {
-	let currentPage: number = 1;
-	let totalPages: number = 1;
+	let currentPage = 1;
+	let totalPages = 1;
 	function createPages(num: string[]): void {
-
+		totalPages = num.length;
 		const pagesDiv: HTMLElement | null = document.getElementById("table-container");
 		const dotsDiv: HTMLElement | null = document.getElementById("dots-div");
 		const errorDiv: HTMLElement | null = document.getElementById("error-div");
 		if (pagesDiv) {
-			for (let i: number = 1; i <= num.length; i++) {
+			for (let i: number = 1; i <= totalPages; i++) {
 				// Pages
 				const pageDiv: HTMLElement = document.createElement("div");
 				pageDiv.setAttribute("class", "page");
@@ -43,7 +43,7 @@ export function addtables(tables: string[]) {
 				errorText.setAttribute("id", "errorText" + i);
 				errorDiv.appendChild(errorText);
 
-				if (num.length !== 1) {
+				if (totalPages !== 1) {
 					// Dots
 					const dot: HTMLElement = document.createElement("div");
 					dot.setAttribute("class", "dot");
@@ -53,11 +53,11 @@ export function addtables(tables: string[]) {
 
 				showPage(1)
 			}
-			totalPages = num.length;
-			functiondot()
+			
+			showPageWhenClickedDot()
 
 		}
-		if (num.length === 1) {
+		if (totalPages === 1) {
 			document.getElementById("previousPage").classList.add("hide")
 			document.getElementById("nextPage").classList.add("hide")
 		}
@@ -68,8 +68,8 @@ export function addtables(tables: string[]) {
 			currentPage--;
 			showPage(currentPage);
 		} else {
-			const pages: HTMLCollectionOf<Element> = document.getElementsByClassName("page");
-			showPage(pages.length);
+			currentPage=totalPages
+			showPage(totalPages);
 		}
 	}
 
@@ -78,12 +78,13 @@ export function addtables(tables: string[]) {
 			currentPage++;
 			showPage(currentPage);
 		} else {
+			currentPage=1
 			showPage(1);
 		}
 	}
 
 
-	function functiondot() {
+	function showPageWhenClickedDot() {
 		// Get all elements with the same class
 		const elements = document.getElementsByClassName('dot');
 

@@ -21,12 +21,11 @@ export function start() {
 <div class="next_box"><button class="btn_next" id="btn_next" disabled>Հաջորդը</button></div>
 `);
 
-	let GetName = <HTMLInputElement>document.getElementById("FileUpload");
-	let Button = <HTMLInputElement>document.getElementById("btn_next");
-	let inputnumber = <HTMLInputElement>document.getElementById("inp");
+	let filePath = <HTMLInputElement>document.getElementById("FileUpload");
+	let Button = <HTMLButtonElement>document.getElementById("btn_next");
 	
-	GetName.addEventListener("change", (event: Event) => { upload(GetName, Button) })
+	filePath.addEventListener("change", (event: Event) => { upload(filePath.files, Button) })
 };
 
 document.getElementById('btn_start').addEventListener('click', start);
-document.getElementById("close").addEventListener("click", () => { (<HTMLInputElement>document.getElementById("bgtransparent")).classList.add("hide") })
+document.getElementById("close").addEventListener("click", () => { (<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide") })

@@ -1,5 +1,5 @@
-import { readData } from "./data";
-import { showPage } from "./methodologyTable";
+import { readData } from "./editData";
+import { showPage } from "./methodologyTableCreator";
 import { selection } from "./selection";
 
 function pushError(error:string, pageNumber:number) {
@@ -46,7 +46,7 @@ export function methodologyChecker() {
 		if(pageNumber.length!==0){
 			showPage(Math.min.apply(Math, pageNumber) )
 		}else{
-			(<HTMLInputElement>document.getElementById("bgtransparent")).classList.add("hide")
+			(<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide")
 			document.getElementById("startdiv").classList.add("hide")
 			document.getElementById("result").classList.remove("hide")
 			document.getElementById("result").classList.add("result")

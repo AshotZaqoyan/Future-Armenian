@@ -1,14 +1,14 @@
 import { start } from "../renderer";
-import { methodology } from "./methodology";
-import { saveData } from "./data";
-import { addtables } from "./methodologyTable";
+import { getMethodology } from "./getMethodology";
+import { saveData } from "./editData";
+import { addtables } from "./methodologyTableCreator";
 import { createwindow } from "./window";
 
 const xlsx = require('xlsx');
 
-export function analysiss(GetName: any) {
+export function analysisExcel(filePath:FileList) {
 
-	fetch(GetName.files[0].path)
+	fetch(filePath[0].path)
 		.then(response => response.arrayBuffer())
 		.then(arrayBuffer => {
 			let tables = []
@@ -122,7 +122,7 @@ export function analysiss(GetName: any) {
 			createwindow("auto", "auto", `<img src="src/img/back.svg" alt="back" class="btn_back" id="back"><div class="shownumberh">Ընտրության մեթոդաբանություն</div><div class="shownumberp">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի <b style="color: #009879;">201</b></div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn" id="nextPage" style="transform: rotate(180deg);"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="methodButton" id="methodButton">Հաստատել</button>`);
 			document.getElementById('back').addEventListener('click', start)
 			addtables(tables)
-			methodology()
+			getMethodology()
 		})
 		.catch(error => {
 			console.log('Error fetching or reading the file:', error);

@@ -1,7 +1,7 @@
-import {saveData} from './data'
+import {saveData} from './editData'
 import { methodologyChecker } from './methodologyChecker';
 
-export function methodology() {
+export function getMethodology() {
 	document.getElementById("methodButton").addEventListener('click', () => {
 		let tables = document.getElementsByClassName("styled-table");
 		let data=[]

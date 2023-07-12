@@ -1,17 +1,16 @@
-import { createwindow } from "./window";
-import { analysiss } from "./Analysis";
+import { analysisExcel } from "./analysisExcel";
 
-export function upload(GetName: any, Button: any) {
+export function upload(filePath: FileList, Button: HTMLButtonElement) {
 	let TypeError = document.getElementById("TypeError");
 	let Name = document.getElementById("FileUploadName");
 
-	if (GetName.files[0].type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-		Name.innerText = GetName.files[0].name;
+	if (filePath[0].type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+		Name.innerText = filePath[0].name;
 		TypeError.innerText = "";
 			Button.removeAttribute("disabled");
 			Button.classList.add("active");
 			document.getElementById('btn_next').addEventListener('click', () => {
-				analysiss(GetName)
+				analysisExcel(filePath)
 				
 			});
 	} else {
