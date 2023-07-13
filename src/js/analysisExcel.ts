@@ -6,7 +6,7 @@ import { createwindow } from "./window";
 
 const xlsx = require('xlsx');
 
-export function analysisExcel(filePath:FileList) {
+export function analysisExcel(filePath: FileList) {
 
 	fetch(filePath[0].path)
 		.then(response => response.arrayBuffer())
@@ -16,7 +16,7 @@ export function analysisExcel(filePath:FileList) {
 			const wb = xlsx.read(data, { type: 'array' });
 
 			let sheetNames = wb.SheetNames;
-			
+
 			let sheetNameJSON = {};
 
 			for (const sheetName of sheetNames) {
@@ -49,10 +49,10 @@ export function analysisExcel(filePath:FileList) {
 						delete result[property];
 					}
 				}
-				if (sheetNameJSON[sheetName].length===0){
+				if (sheetNameJSON[sheetName].length === 0) {
 					start()
-					document.getElementById("TypeError").innerText="Ձեր վերբեռնած Excel ֆայլում մարդկանց տրված չէ եզակի կոդը որը թույլ կտա տարբերակել մարդկանց";
-					throw new Error(`promise chain cancelled because there was no unique code (${sheetName})`); 
+					document.getElementById("TypeError").innerText = "Ձեր վերբեռնած Excel ֆայլում մարդկանց տրված չէ եզակի կոդը որը թույլ կտա տարբերակել մարդկանց";
+					throw new Error(`promise chain cancelled because there was no unique code (${sheetName})`);
 				}
 
 				// Create the table element
@@ -95,14 +95,24 @@ export function analysisExcel(filePath:FileList) {
 
 							if (value) { // Skip creating and appending empty td elements
 								const inputTd = document.createElement('td');
+								const div = document.createElement('div')
 								const input = document.createElement('input');
+								const greaterOrEqual = document.createElement('button');
+								div.setAttribute("class", "input-div");
 								input.type = 'number';
 								input.dataset.key = key;
 								input.dataset.index = value; // Set the data-index as the td name
 								input.value = '0';
 								input.setAttribute("min", "0");
 								input.setAttribute("id", "tableinput");
-								inputTd.appendChild(input);
+								div.appendChild(input);
+
+								greaterOrEqual.setAttribute("id", `${key}${value}`);
+								greaterOrEqual.setAttribute("class", "greater-or-equal");
+								greaterOrEqual.innerText = "="
+								greaterOrEqual.setAttribute("data-text", "=")
+								div.appendChild(greaterOrEqual);
+								inputTd.appendChild(div);
 								row.appendChild(inputTd);
 							} else { // Handle empty value, leave the input field blank
 								const inputTd = document.createElement('td');
@@ -123,6 +133,21 @@ export function analysisExcel(filePath:FileList) {
 			document.getElementById('back').addEventListener('click', start)
 			addtables(tables)
 			getMethodology()
+
+			const elements = document.getElementsByClassName('greater-or-equal') as HTMLCollectionOf<HTMLInputElement>;
+
+			for (let i = 0; i < elements.length; i++) {
+				elements[i].addEventListener('click', () => {
+					const value = elements[i].getAttribute("data-text")
+					if (value === '=') {
+						elements[i].innerText="≥"
+						elements[i].setAttribute("data-text", "≥");
+					} else {
+						elements[i].innerText="="
+						elements[i].setAttribute("data-text", "=");
+					}
+				});
+			}
 		})
 		.catch(error => {
 			console.log('Error fetching or reading the file:', error);

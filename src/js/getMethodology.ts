@@ -23,9 +23,10 @@ export function getMethodology() {
 				if (!obj[dataKey]) {
 					obj[dataKey] = {};
 				}
-
+				const greaterOrEqualElement = document.getElementById(`${dataKey}${dataIndex}`).getAttribute("data-text")
+				let greaterOrEqual=greaterOrEqualElement==="="
 				// Set the value in the object using the dataKey and dataIndex
-				obj[dataKey][dataIndex] = [value, 0];
+				obj[dataKey][dataIndex] = [value, 0, 0, greaterOrEqual];
 			});
 
 			let methodology=[]

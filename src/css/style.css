@@ -290,12 +290,12 @@ input {
 	color: #0c0c0c;
 	font-weight: 500;
 	text-align: left;
-	font-size: 15px;
+	font-size: 13px;
 	height: 23px;
-	width: 45px;
+	width: 35px;
 	float: right;
 	clear: both;
-	border: 1px solid #424242;
+	border: 1px solid #7a7a7a;
 	padding: 3px;
 }
 
@@ -516,4 +516,17 @@ input {
 
 .errorText {
 	color: rgb(250, 71, 71);
+}
+
+.input-div {
+	display: flex;
+}
+
+.greater-or-equal{
+	margin-left: 4px;
+	border-radius: 4px;
+	padding: 0 8px 0 8px;
+	font-size: 16px;
+	border: 1px solid #7a7a7a;
+	background-color: #fff;
 }
