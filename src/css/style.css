@@ -119,8 +119,7 @@ body {
 }
 
 .btn-next {
-	margin-right: 20px;
-	margin-bottom: 20px;
+	margin:15px 20px 0 0;
 	border: none;
 	width: 150px;
 	height: 40px;
@@ -160,7 +159,7 @@ body {
 	height: 413px;
 	border-radius: 0.5rem;
 	box-shadow: 0px 0px 13px 3px rgba(74 114 145 /0.25);
-	margin-top: 10px;
+	margin: 15px 50px 0 50px;
 }
 
 .card .card-body {
@@ -324,14 +323,20 @@ input {
 }
 
 .window-element {
-	max-width: 95vw;
-	max-height: 95vh;
 	border-radius: 30px;
 	background-color: #ffffff;
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	padding: 29px 20px 30px 20px;
+	padding: 29px 20px 25px 20px;
+}
+
+.container-window {
+	display: flex;
+	justify-content: right;
+	max-width: 95vw;
+	max-height: 95vh;
+	margin: 50px;
 }
 
 
@@ -405,9 +410,9 @@ input {
 	margin-right: 20px;
 	border-radius: 38px;
 	background-color: #0D938C;
-	font-weight: bold;
 	width: 150px;
 	height: 40px;
+	min-height: 40px;
 	border: none;
 	color: #ffffff;
 	margin-top: 10px;
@@ -522,7 +527,7 @@ input {
 	display: flex;
 }
 
-.greater-or-equal{
+.greater-or-equal {
 	margin-left: 4px;
 	border-radius: 4px;
 	padding: 0 8px 0 8px;

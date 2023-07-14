@@ -2,7 +2,7 @@ import { createwindow } from "./js/window";
 import { upload } from "./js/Upload"
 
 export function start() {
-	createwindow("70vw", "60vh", `
+	createwindow("auto", "auto", `
 <div class="container" id="upcontainer">
 	<div class="card">
 		<div class="card-body" id="upcard-bod">
