@@ -9,6 +9,12 @@ export function saveData(filePath, data) {
 		fs.mkdirSync(directory, { recursive: true });
 	}
 
+	// Check if the file exists
+	if (!fs.existsSync(filePath)) {
+		// Create the file if it doesn't exist
+		fs.writeFileSync(filePath, '', 'utf8');
+	}
+
 	// Write data to file
 	fs.writeFile(filePath, JSON.stringify(data), 'utf8', (err) => {
 		if (err) {
@@ -18,9 +24,9 @@ export function saveData(filePath, data) {
 	});
 }
 
-export function readData(path: string): Promise<any> {
+export function readData(filePath: string): Promise<any> {
 	return new Promise((resolve, reject) => {
-	  fs.readFile(path, 'utf8', (err, jsonString) => {
+	  fs.readFile(filePath, 'utf8', (err, jsonString) => {
 		if (err) {
 		  console.error('Error reading JSON file:', err);
 		  reject(err);

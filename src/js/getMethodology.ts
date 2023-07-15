@@ -1,4 +1,4 @@
-import {saveData} from './editData'
+import {saveData, readData} from './editData'
 import { methodologyChecker } from './methodologyChecker';
 
 export function getMethodology() {
@@ -36,7 +36,15 @@ export function getMethodology() {
 
 			data.push(methodology)
 		}
-		saveData('./src/data/methodology.json', data)
+		const sheetNamesJson=readData('./src/database/sheetNames.json');
+
+		sheetNamesJson.then((sheetNamesJson) => {
+			const sheetNames=Object.keys(sheetNamesJson);
+			for (let i in sheetNames){
+				saveData('./src/database/methodology/'+sheetNames[i]+'.json', data[i])
+			}
+		})
+
 		methodologyChecker();
 	})
 }
