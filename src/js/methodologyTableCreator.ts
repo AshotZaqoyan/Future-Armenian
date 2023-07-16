@@ -13,7 +13,7 @@ export function showPage(pageNumber: number): void {
 	const errorText: HTMLElement | null = document.getElementById("errorText" + pageNumber);
 	const dot: HTMLElement | null = document.getElementById("dot" + pageNumber);
 	if (page) {
-		page.style.display = "table-caption";
+		page.style.display = "flex";
 		errorText.style.display = "inline";
 		if (pages.length != 1) {
 			dot.classList.add("dot-a")

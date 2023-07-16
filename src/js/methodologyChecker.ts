@@ -70,7 +70,7 @@ export function methodologyChecker() {
 				if (tf) {
 					if (errors.length !== 0) {
 						pagesWithErrors.push(currentIndex + 1);
-						pushError(`Խնդրում ենք Ներմուծել ${errors.join(', ')} շարքի/շարքերի<br>թվերը այնպես որ նրանց գումարը հավասարլ ինին ${numPeople}-ի`, currentIndex + 1);
+						pushError(`Խնդրում ենք Ներմուծել ${errors.join(', ')} շարքի/շարքերի թվերը այնպես որ նրանց գումարը հավասար լինին ${numPeople}-ի`, currentIndex + 1);
 					} else {
 						pushError(``, currentIndex + 1);
 					}
