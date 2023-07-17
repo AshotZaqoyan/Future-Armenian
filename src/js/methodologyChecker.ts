@@ -22,8 +22,7 @@ export function methodologyChecker() {
 				} else {
 					(<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide");
 					document.getElementById("startdiv").classList.add("hide");
-					document.getElementById("result").classList.remove("hide");
-					document.getElementById("result").classList.add("result");
+					document.getElementById("result").classList.replace("hide", "result");
 					selection();
 				}
 				return;
@@ -32,8 +31,8 @@ export function methodologyChecker() {
 			const sheetPath = readData('./src/database/methodology/' + sheetNames[currentIndex] + '.json');
 
 			sheetPath.then((sheetData) => {
-				let errors = [];
-				let tf = true;
+				let errors : string[] = [];
+				let numberEnteredOrNot = true;
 				const criteria = sheetData[0];
 				const numPeople = sheetData[1];
 
@@ -64,10 +63,10 @@ export function methodologyChecker() {
 				} else {
 					pushError("Խնդրում ենք մուտքագրել մարդկանց թվաքանակը (0-ից մեծ)", currentIndex + 1);
 					pagesWithErrors.push(currentIndex + 1);
-					tf = false;
+					numberEnteredOrNot = false;
 				}
 
-				if (tf) {
+				if (numberEnteredOrNot) {
 					if (errors.length !== 0) {
 						pagesWithErrors.push(currentIndex + 1);
 						pushError(`Խնդրում ենք Ներմուծել ${errors.join(', ')} շարքի/շարքերի թվերը այնպես որ նրանց գումարը հավասար լինին ${numPeople}-ի`, currentIndex + 1);
