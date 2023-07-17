@@ -11,7 +11,8 @@ function createWindow() {
 		title: "Future Armenian",
 		icon: 'src/img/FutureArmenian.ico',
 		webPreferences: {
-			nodeIntegration: true
+			nodeIntegration: true,
+			contextIsolation: false
 		}
 	});
 

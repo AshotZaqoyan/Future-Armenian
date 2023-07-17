@@ -13,6 +13,23 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: Montserrat;
+	scrollbar-width: auto;
+	scrollbar-color: #c2c2c2 #ffffff;
+}
+
+*::-webkit-scrollbar {
+	width: 13px;
+	height: 13px;
+}
+
+*::-webkit-scrollbar-track {
+	background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: #c2c2c2;
+	border-radius: 10px;
+	border: 3px solid #ffffff;
 }
 
 /* start window start*/
@@ -21,23 +38,23 @@ body {
 
 }
 
-.elementleft,
-.elementright {
+.element-left,
+.element-right {
 
 	position: absolute;
 	bottom: 0;
 }
 
-.elementright {
+.element-right {
 	right: 0;
 }
 
-.elementleft {
+.element-left {
 
 	left: 0;
 }
 
-.fleximg {
+.container-start {
 	margin-top: 42px;
 	display: flex;
 	align-items: center;
@@ -48,8 +65,8 @@ body {
 	width: 358PX;
 }
 
-.starttext,
-.starttext2 {
+.start-text,
+.start-text2 {
 	margin-top: 32px;
 	width: 625px;
 	font-family: Montserrat;
@@ -61,26 +78,22 @@ body {
 	color: black;
 }
 
-.starttext {
+.start-text {
 	text-align: center;
 }
 
-.starttex2 {
-	width: 625px;
-}
-
-.armathshine {
+.armath-shine {
 	height: 70px;
 }
 
-.button_start {
+.button-start {
 	width: 460px;
 	height: 72px;
 	margin-top: 15px;
 	margin-bottom: 35px;
 	border-radius: 5px;
 	border: none;
-	background: #00605F;
+	background-color: #00605F;
 	font-family: Montserratbold;
 	font-style: normal;
 	font-weight: 700;
@@ -104,11 +117,11 @@ body {
 	position: absolute;
 	margin-right: 21px;
 	margin-top: 18px;
-	background: #0D938C;
+	background-color: #0D938C;
 	border-radius: 100%;
 }
 
-.next_box {
+.next-box {
 
 	width: 100%;
 	display: flex;
@@ -116,27 +129,33 @@ body {
 	align-items: end;
 }
 
-.btn_back {
+.btn-back {
 	margin-top: -10px;
 	margin-bottom: -20px;
 	align-self: flex-start;
 }
 
-.btn_next {
-	margin-right: 20px;
-	margin-bottom: 20px;
+.btn-next {
+	margin: 15px 20px 0 0;
 	border: none;
 	width: 150px;
 	height: 40px;
 	flex-shrink: 0;
 	border-radius: 38px;
-	background: #0D938C;
+	background-color: #60bbb6;
 	color: #FFF;
 	font-size: 18px;
 	font-family: Montserrat arm;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+}
+
+.active {
+	background-color: #0D938C;
+	color: #FFF;
+	font-weight: bold;
+	transition: 0.3s;
 }
 
 /* start window end */
@@ -156,8 +175,8 @@ body {
 	width: 585px;
 	height: 413px;
 	border-radius: 0.5rem;
-	box-shadow: 0px 5px 20px rgba(49, 104, 146, 0.25);
-	margin-top: 10px;
+	box-shadow: 0px 0px 13px 3px rgba(74 114 145 /0.25);
+	margin: 15px 50px 0 50px;
 }
 
 .card .card-body {
@@ -219,27 +238,24 @@ body {
 	}
 }
 
-.active {
-	background-color: #4AE16E;
-	color: #FFF;
-	font-weight: bold;
-	transition: 0.3s;
-}
-
-.inp_box {
-	width: 585px;
-	height: 61px;
-	margin-top: 25px;
+.inp-box {
+	width: 570px;
+	height: 57px;
 	padding: 15px 25px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	color: #777;
 	border-radius: 0.5rem;
-	box-shadow: 0px 5px 20px rgba(49, 104, 146, 0.25);
+	box-shadow: 0px 5px 20px 10px #72a5a442;
+	position: fixed;
+	left: 50%;
+	background-color: #fff;
+	transform: translate(-50%, 0);
+	margin-top: -65px;
 }
 
-.inp_p {
+.inp-p {
 	display: inline;
 }
 
@@ -259,7 +275,7 @@ body {
 	height: 33px;
 	border-radius: 7px;
 	border: 1.9px solid #dedede;
-	background: #f7f7f7;
+	background-color: #f7f7f7;
 	padding: 5px;
 	font-size: 15px;
 	float: right;
@@ -268,7 +284,6 @@ body {
 #TypeError {
 	left: 0;
 	right: 0;
-
 	margin-top: 3px;
 	color: rgb(250, 71, 71);
 }
@@ -285,18 +300,17 @@ td {
 
 }
 
-
 input {
 	border-radius: 5px;
 	color: #0c0c0c;
 	font-weight: 500;
 	text-align: left;
-	font-size: 15px;
+	font-size: 13px;
 	height: 23px;
-	width: 45px;
+	width: 35px;
 	float: right;
 	clear: both;
-	border: 1px solid #424242;
+	border: 1px solid #7a7a7a;
 	padding: 3px;
 }
 
@@ -312,31 +326,38 @@ input {
 	z-index: 10;
 	width: 100%;
 	height: 100%;
-	background: #0000004d;
+	background-color: #0000004d;
 }
 
 #table-container {
 	margin: 0 15px;
 	overflow: auto;
-	width: auto;
-	height: auto;
-	max-width: 100%;
 	max-height: 100%;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	align-items: flex-end;
 }
 
-.windowElement {
-	max-width: 95vw;
-	max-height: 95vh;
+.window-element {
 	border-radius: 30px;
-	background: #ffffff;
+	background-color: #ffffff;
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	padding: 29px 20px 30px 20px;
+	padding: 29px 20px 25px 20px;
+}
+
+.container-window {
+	display: flex;
+	justify-content: right;
+	max-width: 95vw;
+	max-height: 95vh;
+	margin: 50px;
 }
 
 
-.shownumberp {
+.show-number-p {
 	color: #777;
 	font-size: 17px;
 	font-weight: 300;
@@ -345,7 +366,7 @@ input {
 	margin-top: 0.25rem;
 }
 
-.shownumberh {
+.show-number-h {
 	color: #009879;
 	font-size: 23px;
 	font-weight: 700;
@@ -355,13 +376,9 @@ input {
 
 .styled-table {
 	border-collapse: collapse;
-	margin: 25px 0;
 	font-size: 15px;
-	min-width: 400px;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	margin: auto;
-	margin-top: 10px;
-	max-width: 90%;
 }
 
 .styled-table thead tr {
@@ -403,22 +420,23 @@ input {
 	color: #009879;
 }
 
-.methodButton {
+.method-button {
 	margin-right: 20px;
 	border-radius: 38px;
 	background-color: #0D938C;
-	font-weight: bold;
 	width: 150px;
 	height: 40px;
+	min-height: 40px;
 	border: none;
 	color: #ffffff;
-	margin-top: 10px;
 	font-size: 18px;
 	font-family: Montserrat arm;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
 	align-self: flex-end;
+	bottom: calc((100vh - 80vh) / 1.6);
+	position: absolute;
 }
 
 /* result start*/
@@ -485,26 +503,57 @@ input {
 
 .next-back {
 	display: flex;
-	max-width: 100%;
-	max-height: 100%;
+	width: 100%;
+	height: calc(100% - 130px);
 }
 
 .next-back-btn {
 	width: 20px;
+	box-sizing: content-box;
 }
-.dots-div{
+
+.dots-div {
 	display: flex;
-	margin-top: 15px;
+	margin-top: 5px;
 }
-.dot{
-	
+
+.dot {
+
 	border-radius: 100%;
 	width: 15px;
 	height: 15px;
-	background: #b8b8b8;
+	background-color: #b8b8b8;
 	margin: 0 5px;
 }
 
-.dot-a{
-	background: #8a8a8a;
+.dot-a {
+	background-color: #8a8a8a;
+}
+
+#error-div {
+	margin-top: 3px;
+	min-height: 38px;
+	min-width: 38px;
+}
+
+.errorText {
+	color: rgb(250, 71, 71);
+}
+
+.input-div {
+	display: flex;
+}
+
+.greater-or-equal {
+	margin-left: 4px;
+	border-radius: 4px;
+	padding: 0 8px 0 8px;
+	font-size: 16px;
+	border: 1px solid #7a7a7a;
+	background-color: #fff;
+}
+
+.page {
+	width: 100%;
+	height: calc(100% - 70px);
 }
