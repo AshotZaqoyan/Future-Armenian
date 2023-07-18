@@ -21,10 +21,15 @@ export function start() {
 <div class="next-box"><button class="btn-next" id="btn-next" disabled>Հաջորդը</button></div>
 `);
 
-	let filePath = <HTMLInputElement>document.getElementById("FileUpload");
+	let filePath: HTMLInputElement = <HTMLInputElement>document.getElementById("FileUpload");
 	let Button = <HTMLButtonElement>document.getElementById("btn-next");
-	
-	filePath.addEventListener("change", (event: Event) => { upload(filePath.files, Button) })
+
+	filePath.addEventListener("change", (event: Event) => {
+		const file = filePath.files[0];
+		if (file) {
+			upload(file, Button);
+		}
+	});
 };
 
 document.getElementById('btn_start').addEventListener('click', start);

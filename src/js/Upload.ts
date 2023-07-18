@@ -1,18 +1,17 @@
 import { analysisExcel } from "./analysisExcel";
 
-export function upload(filePath: FileList, Button: HTMLButtonElement) {
+export function upload(file: File, Button: HTMLButtonElement) {
 	let TypeError = document.getElementById("TypeError");
 	let Name = document.getElementById("FileUploadName");
 
-	if (filePath[0].type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-		Name.innerText = filePath[0].name;
+	if (file.type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+		Name.innerText = file.name;
 		TypeError.innerText = "";
-			Button.removeAttribute("disabled");
-			Button.classList.add("active");
-			document.getElementById('btn-next').addEventListener('click', () => {
-				analysisExcel(filePath)
-				
-			});
+		Button.removeAttribute("disabled");
+		Button.classList.add("active");
+		document.getElementById('btn-next').addEventListener('click', () => {
+			analysisExcel(file);
+		});
 	} else {
 		Name.innerText = "Քաշեք և թողեք ձեր ֆայլը այստեղ";
 		TypeError.innerText = "Վերբեռնել .xlsx ֆորմատի ֆայլ";
