@@ -9,7 +9,7 @@ interface MethodologyData {
 
 type Methodology = Array<[MethodologyData, number]>;
 
-export function getMethodology() {
+export function getMethodology(sheetNamesPath='./src/database/sheetNames.json') {
 	document.getElementById("method-button").addEventListener("click", () => {
 		let tables = document.getElementsByClassName("styled-table");
 		let data: Methodology = [];
@@ -44,7 +44,7 @@ export function getMethodology() {
 			data.push(methodology);
 		}
 
-		const sheetNamesJson = readData('./src/database/sheetNames.json');
+		const sheetNamesJson = readData(sheetNamesPath);
 
 		sheetNamesJson.then((sheetNamesJson) => {
 			const sheetNames = Object.keys(sheetNamesJson);
@@ -53,6 +53,6 @@ export function getMethodology() {
 			}
 		});
 
-		methodologyChecker();
+		methodologyChecker(sheetNamesPath);
 	});
 }

@@ -1,5 +1,6 @@
 import { createwindow } from "./js/window";
 import { upload } from "./js/Upload"
+import { situationCheck } from "./js/statusChecker";
 
 export function start() {
 	createwindow("auto", "auto", `
@@ -26,6 +27,6 @@ export function start() {
 	
 	filePath.addEventListener("change", (event: Event) => { upload(filePath.files, Button) })
 };
-
+situationCheck()
 document.getElementById('btn_start').addEventListener('click', start);
 document.getElementById("close").addEventListener("click", () => { (<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide") })

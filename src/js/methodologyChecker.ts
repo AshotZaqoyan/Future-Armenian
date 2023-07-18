@@ -1,14 +1,13 @@
 import { readData } from "./editData";
-import { showPage } from "./methodologyTableCreator";
-import { selection } from "./selection";
+import { showPage } from "./methodologyTableAdd";
+import { choice } from "./choice";
 
 function pushError(error: string, pageNumber: number) {
 	document.getElementById('errorText' + pageNumber).innerHTML = error
 }
 
-export function methodologyChecker() {
-	const sheetNamesJson = readData('./src/database/sheetNames.json');
-
+export function methodologyChecker(sheetNamesPath='./src/database/sheetNames.json') {
+	const sheetNamesJson = readData(sheetNamesPath);
 	sheetNamesJson.then((sheetNamesJson) => {
 		const sheetNames = Object.keys(sheetNamesJson);
 		let pagesWithErrors = [];
@@ -20,10 +19,7 @@ export function methodologyChecker() {
 				if (pagesWithErrors.length !== 0) {
 					showPage(Math.min.apply(Math, pagesWithErrors));
 				} else {
-					(<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide");
-					document.getElementById("startdiv").classList.add("hide");
-					document.getElementById("result").classList.replace("hide", "result");
-					selection();
+					choice();
 				}
 				return;
 			}
@@ -75,7 +71,7 @@ export function methodologyChecker() {
 					}
 				}
 
-				console.clear()
+				//console.clear()
 				currentIndex++;
 				processNextSheet(); // Process the next sheet
 			}).catch((error) => {

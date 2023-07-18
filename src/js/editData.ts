@@ -26,20 +26,24 @@ export function saveData(filePath, data) {
 
 export function readData(filePath: string): Promise<any> {
 	return new Promise((resolve, reject) => {
-	  fs.readFile(filePath, 'utf8', (err, jsonString) => {
-		if (err) {
-		  console.error('Error reading JSON file:', err);
-		  reject(err);
-		  return;
-		}
-  
-		try {
-		  const jsonData = JSON.parse(jsonString);
-		  resolve(jsonData);
-		} catch (e) {
-		  console.error('Error parsing JSON file:', e);
-		  reject(e);
-		}
-	  });
+		fs.readFile(filePath, 'utf8', (err, jsonString) => {
+			if (err) {
+				if (err.code === 'ENOENT') {
+					reject(new Error('File not found'));
+				} else {
+					console.error('Error reading JSON file:', err);
+					reject(err);
+				}
+				return;
+			}
+
+			try {
+				const jsonData = JSON.parse(jsonString);
+				resolve(jsonData);
+			} catch (e) {
+				console.error('Error parsing JSON file:', e);
+				reject(e);
+			}
+		});
 	});
-  }
+}
