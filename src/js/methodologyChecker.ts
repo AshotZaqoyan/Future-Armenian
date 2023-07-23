@@ -2,11 +2,11 @@ import { readData } from "./editData";
 import { showPage } from "./methodologyTableAdd";
 import { choice } from "./choice";
 
-function pushError(error: string, pageNumber: number) {
+export function pushError(error: string, pageNumber: number) {
 	document.getElementById('errorText' + pageNumber).innerHTML = error
 }
 
-export function methodologyChecker(sheetNamesPath='./src/database/sheetNames.json') {
+export function methodologyChecker(sheetNamesPath = './src/database/sheetNames.json', path = "./src/database/") {
 	const sheetNamesJson = readData(sheetNamesPath);
 	sheetNamesJson.then((sheetNamesJson) => {
 		const sheetNames = Object.keys(sheetNamesJson);
@@ -19,15 +19,18 @@ export function methodologyChecker(sheetNamesPath='./src/database/sheetNames.jso
 				if (pagesWithErrors.length !== 0) {
 					showPage(Math.min.apply(Math, pagesWithErrors));
 				} else {
-					choice();
+					(<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide");
+					/*document.getElementById("startdiv").classList.add("hide");
+					document.getElementById("result").classList.replace("hide", "result");*/
+					choice(path);
 				}
 				return;
 			}
 
-			const sheetPath = readData('./src/database/methodology/' + sheetNames[currentIndex] + '.json');
+			const sheetPath = readData(`${path}methodology/` + sheetNames[currentIndex] + '.json');
 
 			sheetPath.then((sheetData) => {
-				let errors : string[] = [];
+				let errors: string[] = [];
 				let numberEnteredOrNot = true;
 				const criteria = sheetData[0];
 				const numPeople = sheetData[1];
@@ -44,14 +47,16 @@ export function methodologyChecker(sheetNamesPath='./src/database/sheetNames.jso
 									const subValues = values[subKey];
 
 									if (subValues[0]) {
-										equalSum += subValues[0];
-									} else {
-										greaterSum += subValues[0];
+										if (subValues[3]) {
+											equalSum += subValues[0];
+										}else{
+											greaterSum += subValues[0];
+										}
 									}
+										
 								}
 							}
-
-							if (equalSum < numPeople && !(equalSum + greaterSum >= numPeople)) {
+							if (!(equalSum === numPeople || ((equalSum + greaterSum >= numPeople) && equalSum <= numPeople))) {
 								errors.push(key);
 							}
 						}
@@ -71,7 +76,7 @@ export function methodologyChecker(sheetNamesPath='./src/database/sheetNames.jso
 					}
 				}
 
-				//console.clear()
+
 				currentIndex++;
 				processNextSheet(); // Process the next sheet
 			}).catch((error) => {

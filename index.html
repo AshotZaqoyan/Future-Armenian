@@ -10,6 +10,12 @@
 </head>
 
 <body>
+	<div id="waitingAnimation" style="display: none;">
+		<div>
+			<div class="outerCircle"></div>
+			<div class="innerCircle"></div>
+		</div>
+	</div>
 	<div class="bgtransparent hide" id="bgtransparent">
 		<div class="container-window">
 			<div class="circle" id="close"><img src="src/img/close.svg" alt="" class="close"></div>
@@ -17,7 +23,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="startdiv" id="startdiv">
+	<div class="startdiv hide" id="startdiv">
 		<div class="container-start">
 			<img src="src/img/fut.svg" class="fut">
 			<p class="start-text">Համակարգչային ծրագիրը իրականացնում է առաջին համահայկական քաղաքացիական Համաժողովի
@@ -51,12 +57,14 @@
 	</div>
 	<br><br>
 	<div class="hide" id="result">
+		<div id="reset"><img id="reset-img" src="src/img/reset.svg" alt="reset"></div>
+		<div id="export"><img id="export-img" src="src/img/export.svg" alt="export"></div>
+		<div id="replaceing-people"><img id="replaceing-people-img" src="src/img/replacingPeople.svg" alt="replace people"></div>
+		<button id="replaceing-people-confirm" style="display: none;">Հաստատել</button>
 		<img src="src/img/fut.svg" class="conimg" style="margin-top: 10px;">
 		<br>
 		<h1 style="color: #00605F;">Ընտրության արդյունքներ</h1>
-		<br>
-		<table class="styled-table-result" id="styled-table-result">
-		</table>
+		<div id="result-tables"></div>
 	</div>
 	<script src="dist/renderer.js"></script> <!-- Update the script source -->
 </body>

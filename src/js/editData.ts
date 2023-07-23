@@ -1,27 +1,58 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-export function saveData(filePath, data) {
-	const directory = path.dirname(filePath);
+export function saveData(filePath, data, maxRetries = 5) {
+	let retries = 0;
+	let success = false;
 
-	// Create directory if it doesn't exist
-	if (!fs.existsSync(directory)) {
-		fs.mkdirSync(directory, { recursive: true });
-	}
+	while (!success && retries < maxRetries) {
+		const directory = path.dirname(filePath);
 
-	// Check if the file exists
-	if (!fs.existsSync(filePath)) {
-		// Create the file if it doesn't exist
-		fs.writeFileSync(filePath, '', 'utf8');
-	}
-
-	// Write data to file
-	fs.writeFile(filePath, JSON.stringify(data), 'utf8', (err) => {
-		if (err) {
-			console.error('Error writing to JSON file:', err);
-			return;
+		// Create directory if it doesn't exist
+		if (!fs.existsSync(directory)) {
+			fs.mkdirSync(directory, { recursive: true });
 		}
-	});
+
+		// Check if the file exists
+		if (!fs.existsSync(filePath)) {
+			// Create the file if it doesn't exist
+			fs.writeFileSync(filePath, '', 'utf8');
+		}
+
+		try {
+			// Write data to file
+			fs.writeFileSync(filePath, JSON.stringify(data), 'utf8');
+			success = true;
+		} catch (err) {
+			console.error('Error writing to JSON file:', err);
+			retries++;
+		}
+	}
+
+	if (!success) {
+		console.error('Failed to save data after maximum retries.');
+	}
+}
+
+export function deleteFolderRecursive(folderPath) {
+	if (fs.existsSync(folderPath)) {
+		fs.readdirSync(folderPath).forEach((file) => {
+			const currentFilePath = path.join(folderPath, file);
+
+			if (fs.lstatSync(currentFilePath).isDirectory()) {
+				// Recursive call for subfolders
+				deleteFolderRecursive(currentFilePath);
+			} else {
+				// Delete files inside the folder
+				fs.unlinkSync(currentFilePath);
+			}
+		});
+
+		// Delete the empty folder
+		fs.rmdirSync(folderPath);
+	} else {
+		console.log(`Folder ${folderPath} does not exist.`);
+	}
 }
 
 export function readData(filePath: string): Promise<any> {

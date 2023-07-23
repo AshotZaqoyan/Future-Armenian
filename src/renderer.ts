@@ -2,6 +2,7 @@ import { createwindow } from "./js/window";
 import { upload } from "./js/Upload"
 import { situationCheck } from "./js/statusChecker";
 
+document.getElementById("startdiv").classList.remove("hide");
 export function start() {
 	createwindow("auto", "auto", `
 <div class="container" id="upcontainer">

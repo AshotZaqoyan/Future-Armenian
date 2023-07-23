@@ -1,4 +1,5 @@
 import { analysisExcel } from "./analysisExcel";
+import { deleteFolderRecursive } from "./editData";
 
 export function upload(filePath: FileList, Button: HTMLButtonElement) {
 	let TypeError = document.getElementById("TypeError");
@@ -10,8 +11,8 @@ export function upload(filePath: FileList, Button: HTMLButtonElement) {
 			Button.removeAttribute("disabled");
 			Button.classList.add("active");
 			document.getElementById('btn-next').addEventListener('click', () => {
+				deleteFolderRecursive("./src/database")
 				analysisExcel(filePath)
-				
 			});
 	} else {
 		Name.innerText = "Քաշեք և թողեք ձեր ֆայլը այստեղ";
