@@ -2,7 +2,7 @@ import { createwindow } from "./js/window";
 import { upload } from "./js/Upload"
 import { situationCheck } from "./js/statusChecker";
 
-document.getElementById("startdiv").classList.remove("hide");
+document.getElementById("start-div").classList.remove("hide");
 export function start() {
 	createwindow("auto", "auto", `
 <div class="container" id="upcontainer">
@@ -29,5 +29,5 @@ export function start() {
 	filePath.addEventListener("change", (event: Event) => { upload(filePath.files, Button) })
 };
 situationCheck()
-document.getElementById('btn_start').addEventListener('click', start);
+document.getElementById('btn-start').addEventListener('click', start);
 document.getElementById("close").addEventListener("click", () => { (<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide") })

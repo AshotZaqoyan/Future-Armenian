@@ -20,8 +20,6 @@ export function methodologyChecker(sheetNamesPath = './src/database/sheetNames.j
 					showPage(Math.min.apply(Math, pagesWithErrors));
 				} else {
 					(<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide");
-					/*document.getElementById("startdiv").classList.add("hide");
-					document.getElementById("result").classList.replace("hide", "result");*/
 					choice(path);
 				}
 				return;

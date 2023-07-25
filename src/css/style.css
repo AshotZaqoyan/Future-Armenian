@@ -66,7 +66,7 @@ body {
 }
 
 .start-text,
-.start-text2 {
+.start-text-2 {
 	margin-top: 32px;
 	width: 625px;
 	font-family: Montserrat;
@@ -499,10 +499,6 @@ input {
 
 /* result end*/
 
-.hide {
-	display: none;
-}
-
 .next-back {
 	display: flex;
 	width: 100%;
@@ -572,7 +568,6 @@ input {
 	width: 100vw;
 	height: 100vh;
 	background-color: #F5F8FD;
-	display: flex;
 	justify-content: center;
 	align-items: center;
 }
@@ -745,4 +740,24 @@ input:focus {
 .search-icon {
 	width: 20px;
 	margin-left: -27px;
+}
+
+.hide {
+	display: none;
+}
+
+.show-display-flex{
+	display: flex;
+}
+
+.result-title {
+	color: #00605F;
+}
+
+.conimg {
+	margin-top: 10px;
+}
+
+.right-arrow{
+	transform: rotate(180deg);
 }

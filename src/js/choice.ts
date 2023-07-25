@@ -1,36 +1,38 @@
-import _ from 'lodash'
-import { readData, saveData, deleteFolderRecursive } from "./editData";
+import _ from 'lodash';
+import { readData, saveData } from "./editData";
 import { resultTableAdd } from "./resultTable";
 import { situationCheck } from './statusChecker';
 import { waitingAnimation } from './waitingAnimation';
 
-let distinctive = ""
-let chosenPeople = []
-let data = []
-let criteria = {}
-let tf = true
-
-function findArrayDifference(arr1, arr2, distinctive) {
-	const differences = [];
-
-	// Find objects unique to arr1
-	for (const obj1 of arr1) {
-		if (!arr2.some(obj2 => obj2[distinctive] === obj1[distinctive])) {
-			differences.push(obj1);
-		}
-	}
-
-	// Find objects unique to arr2
-	for (const obj2 of arr2) {
-		if (!arr1.some(obj1 => obj1[distinctive] === obj2[distinctive])) {
-			differences.push(obj2);
-		}
-	}
-
-	return differences;
+interface UserData {
+	[key: string]: string
 }
-// Initialize the counts in the criteria object
+
+interface criteria {
+	[key: string]: { [key: string]: [number, number, number, boolean] };
+}
+
+interface noResult {
+	[country: string]: {
+		[property: string]: string[];
+	  };
+}
+
+let distinctive = "";
+let chosenPeople: UserData[] = [];
+let data: UserData[] = [];
+let criteria: criteria = {};
+let tf = true;
+
+function findArrayDifference(arr1: UserData[], arr2: UserData[], distinctive: string) {
+	const arr1Set = new Set(arr1.map((obj) => obj[distinctive]));
+	const arr2Set = new Set(arr2.map((obj) => obj[distinctive]));
+
+	return [...arr1.filter((obj) => !arr2Set.has(obj[distinctive])), ...arr2.filter((obj) => !arr1Set.has(obj[distinctive]))];
+}
+
 function dataAnalysis() {
+	// Reset the counts in the criteria object
 	for (const key in criteria) {
 		for (const option in criteria[key]) {
 			criteria[key][option][2] = 0;
@@ -47,7 +49,7 @@ function dataAnalysis() {
 	}
 }
 
-function incrementCriteriaValue(person) {
+function incrementCriteriaValue(person: UserData) {
 	for (const key in criteria) {
 		if (criteria.hasOwnProperty(key) && person.hasOwnProperty(key)) {
 			const value = person[key];
@@ -58,9 +60,9 @@ function incrementCriteriaValue(person) {
 			}
 		}
 	}
-};
+}
 
-function getRandomPersonByCriteria(key, keyValue) {
+function getRandomPersonByCriteria(key: string, keyValue: string) {
 	const filteredCandidates = data.filter((person) => person[key] === keyValue);
 	if (filteredCandidates.length === 0) {
 		return null;
@@ -69,18 +71,18 @@ function getRandomPersonByCriteria(key, keyValue) {
 	chosenPeople.push(filteredCandidates[randomIndex]);
 	incrementCriteriaValue(filteredCandidates[randomIndex]);
 
-	const randomPersonCode = filteredCandidates[randomIndex][distinctive]
+	const randomPersonCode = filteredCandidates[randomIndex][distinctive];
 	const index = data.findIndex((person) => person[distinctive] === randomPersonCode);
 
-	const selectedPerson = data.splice(index, 1)[0];
-
-};
+	data.splice(index, 1);
+}
 
 function little() {
 	let minValue = Infinity;
 	let minKey = null;
 	let parentKey = null;
-	let breakOrNot = false
+	let breakOrNot = false;
+
 	outerLoop: for (const key in criteria) {
 		if (criteria.hasOwnProperty(key)) {
 			const value = criteria[key];
@@ -93,7 +95,7 @@ function little() {
 							minKey = childKey;
 							parentKey = key;
 							if (childValue[2] <= 0) {
-								breakOrNot = true
+								breakOrNot = true;
 							}
 						}
 					}
@@ -102,8 +104,8 @@ function little() {
 		}
 	}
 	if (breakOrNot) {
-		tf = false
-		return { [parentKey]: minKey }
+		tf = false;
+		return { [parentKey]: minKey };
 	} else {
 		getRandomPersonByCriteria(parentKey, minKey);
 	}
@@ -144,7 +146,8 @@ function equal() {
 	}
 }
 
-function mergeErrors(arr) {
+function mergeErrors(arr: string[]) {
+	console.log(arr)
 	const result = {};
 
 	arr.forEach((obj) => {
@@ -169,28 +172,27 @@ function mergeErrors(arr) {
 	return Object.entries(result).map(([key, value]) => ({ [key]: Array.isArray(value) ? value : [value] }));
 }
 
-export async function choice(path = "./src/database/") {
+export async function choice(path: string = "./src/database/") {
 	try {
-		waitingAnimation()
-		const sheetNames = await readData(`${path}sheetNames.json`);
+		waitingAnimation();
+		const sheetNames: string = await readData(`${path}sheetNames.json`);
 		const onlySheetNames = Object.keys(sheetNames)
-		let noResult = {}
+		let noResult: noResult[] = [];
 		for (const sheetName of onlySheetNames) {
-			const result: string[] = await readData(`${path}result/${sheetName}.json`)
+			const result = await readData(`${path}result/${sheetName}.json`)
 			if (result.length === 0) {
 				const completeData = await readData(`${path}completeData/${sheetName}.json`);
 				const methodologyData = await readData(`${path}methodology/${sheetName}.json`);
 				const numPeople = methodologyData[1]
 				let i = 0
 				distinctive = sheetNames[sheetName][0]
-				let criteriaErrors = []
+				let criteriaErrors: any[] = [];
 
 				while (i < 50) {
 					chosenPeople = []
-					// With .slice() or [... ] it doesn't work, that's why I used JSON.stringify() and JSON.parse()
 					data = [...completeData];
 					criteria = _.cloneDeep(methodologyData[0]);
-					tf = true
+					tf = true;
 
 					dataAnalysis();
 
@@ -200,7 +202,7 @@ export async function choice(path = "./src/database/") {
 						little();
 					}
 					if (chosenPeople.length === numPeople) {
-						break
+						break;
 					}
 					criteriaErrors.push(little())
 					chosenPeople = []
@@ -212,12 +214,12 @@ export async function choice(path = "./src/database/") {
 				if (chosenPeople.length === 0) {
 					noResult[sheetName] = mergeErrors(criteriaErrors)
 				} else {
-					saveData(`${path}result/${sheetName}.json`, chosenPeople)
+					await saveData(`${path}result/${sheetName}.json`, chosenPeople)
 					if (path !== "./src/database/") {
 						const result = await readData(`./src/database/result/${sheetName}.json`)
 						const replaceablePeople = await readData(`${path}dataForMethodology/${sheetName}.json`)
 						const differences = [...findArrayDifference(replaceablePeople, result, distinctive), ...chosenPeople];
-						saveData(`./src/database/result/${sheetName}.json`, differences)
+						await saveData(`./src/database/result/${sheetName}.json`, differences)
 					}
 				}
 			}
@@ -227,7 +229,6 @@ export async function choice(path = "./src/database/") {
 				resultTableAdd()
 				saveData("./src/database/noResult.json", [])
 			} else {
-				deleteFolderRecursive("./src/database/replacing")
 				saveData('./src/database/replacing/sheetNames.json', [])
 				resultTableAdd()
 				window.location.reload();

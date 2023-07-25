@@ -93,8 +93,9 @@ export function replacingPeople() {
 	});
 
 	const confirm = document.getElementById("replaceing-people-confirm")
-	if (confirm.style.display === "none") {
-		confirm.style.display = "inline"
+	const className=confirm.classList[0]
+	if (className === "hide") {
+		confirm.classList.remove(className)
 		confirm.addEventListener("click", () => {
 			const tables = document.querySelectorAll(".styled-table-result");
 			const tablesData: TableData = {};
@@ -112,7 +113,7 @@ export function replacingPeople() {
 
 		});
 	} else {
-		confirm.style.display = "none";
+		confirm.classList.add("hide")
 	}
 
 }

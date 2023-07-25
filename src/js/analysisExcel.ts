@@ -5,6 +5,23 @@ import { addtables } from "./methodologyTableAdd";
 import { createwindow } from "./window";
 import { methodologyTableCreate } from "./methodologyTableCreator";
 
+interface sheetName {
+	[key: string]: string[];
+}
+
+interface Methodology {
+	[key: string]: string[];
+}
+
+interface convertedResult {
+	[key: string]: { [key: string]: [string, number, number, boolean] };
+}
+
+interface MethodologyAndNumber {
+	0: convertedResult;
+	1: number;
+}
+
 const xlsx = require('xlsx');
 
 export function analysisExcel(files: FileList) {
@@ -19,7 +36,7 @@ export function analysisExcel(files: FileList) {
 
 		let sheetNames = wb.SheetNames;
 
-		let sheetNameJSON = {};
+		let sheetNameJSON: sheetName = {};
 
 		for (const sheetName of sheetNames) {
 			sheetNameJSON[sheetName] = [];
@@ -32,8 +49,8 @@ export function analysisExcel(files: FileList) {
 			saveData('./src/database/noResult.json', [])
 			saveData('./src/database/replacing/noResult.json', [])
 			saveData('./src/database/replacing/sheetNames.json', [])
-			
-			let result = {};
+
+			let result: Methodology = {};
 
 			datajson.forEach(obj => {
 				for (const key in obj) {
@@ -57,7 +74,7 @@ export function analysisExcel(files: FileList) {
 				}
 			}
 
-			const convertedResult: any = {};
+			const convertedResult: convertedResult = {};
 
 			for (const key in result) {
 				if (result.hasOwnProperty(key)) {
@@ -69,9 +86,9 @@ export function analysisExcel(files: FileList) {
 				}
 			}
 
-			result = [convertedResult, 0];
-			saveData("./src/database/methodology/"+sheetName+".json", JSON.parse(JSON.stringify(result).replace(/""/g, "0")))
-			
+			let methodology: MethodologyAndNumber = [convertedResult, 0];
+			saveData("./src/database/methodology/" + sheetName + ".json", JSON.parse(JSON.stringify(methodology).replace(/""/g, "0")))
+
 			if (sheetNameJSON[sheetName].length === 0) {
 				start()
 				document.getElementById("TypeError").innerText = "Ձեր վերբեռնած Excel ֆայլում մարդկանց տրված չէ եզակի կոդը որը թույլ կտա տարբերակել մարդկանց";
@@ -79,13 +96,13 @@ export function analysisExcel(files: FileList) {
 			}
 
 
-			const table = methodologyTableCreate(result)
+			const table = methodologyTableCreate(methodology)
 
 			tables.push([table.outerHTML, ''])
 		}
 		saveData("./src/database/sheetNames.json", sheetNameJSON)
 
-		createwindow("100vh", "80vh", `<img src="src/img/back.svg" alt="back" class="btn-back" id="back"><div class="show-number-h">Ընտրության մեթոդաբանություն</div><div class="show-number-p">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի միմյանց</div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn" id="nextPage" style="transform: rotate(180deg);"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="method-button" id="method-button">Հաստատել</button>`);
+		createwindow("100vh", "80vh", `<img src="src/img/back.svg" alt="back" class="btn-back" id="back"><div class="show-number-h">Ընտրության մեթոդաբանություն</div><div class="show-number-p">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի միմյանց</div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn right-arrow" id="nextPage"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="method-button" id="method-button">Հաստատել</button>`);
 		document.getElementById('back').addEventListener('click', start)
 		addtables(tables)
 		getMethodology()

@@ -1,4 +1,4 @@
-import { readData, deleteFolderRecursive } from "./editData";
+import { readData, saveData } from "./editData";
 import { replacingPeople } from "./replacingPeople";
 import { createExcelFile } from "./createExcelFile";
 import { createwindow } from "./window";
@@ -125,7 +125,7 @@ export async function resultTableAdd() {
 			resultDiv.appendChild(tableContainer);
 		}
 
-		document.getElementById("startdiv").classList.add("hide");
+		document.getElementById("start-div").classList.add("hide");
 		document.getElementById("result").classList.replace("hide", "result");
 
 		const showHideButton = document.getElementById("replaceing-people");
@@ -133,8 +133,8 @@ export async function resultTableAdd() {
 		document.getElementById("reset").addEventListener("click", () => {
 			createwindow("436px", "200px", "<div class='reset-div'><h2 style='margin-bottom: 10px;color: #27958f;'>Վերագործարկում</h2><p>Սեղմելով հաստատել կջնջվի ամբողջ տվյալները և այլևս չեք կարողանա վերականգնել դրանք</p><button id='reset-confirm'>Հաստատել<buttton></div>")
 			document.getElementById("reset-confirm").addEventListener("click", () => {
-				deleteFolderRecursive("./src/database");
-				window.location.reload()
+				saveData("./src/database/sheetNames.json", []);
+				window.location.reload();
 			})
 		})
 		showHideButton.addEventListener("click", function () {

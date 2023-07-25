@@ -1,7 +1,5 @@
-
 export function waitingAnimation() {
-
 	const waitingAnimation = document.getElementById("waitingAnimation") as HTMLElement;
-	waitingAnimation.style.display = waitingAnimation.style.display === "none" ? "flex" : "none";
-
+	const className=waitingAnimation.classList[0]
+	waitingAnimation.classList.replace(className, (className==="hide"?"show-display-flex":"hide"))
 }

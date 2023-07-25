@@ -34,27 +34,6 @@ export function saveData(filePath, data, maxRetries = 5) {
 	}
 }
 
-export function deleteFolderRecursive(folderPath) {
-	if (fs.existsSync(folderPath)) {
-		fs.readdirSync(folderPath).forEach((file) => {
-			const currentFilePath = path.join(folderPath, file);
-
-			if (fs.lstatSync(currentFilePath).isDirectory()) {
-				// Recursive call for subfolders
-				deleteFolderRecursive(currentFilePath);
-			} else {
-				// Delete files inside the folder
-				fs.unlinkSync(currentFilePath);
-			}
-		});
-
-		// Delete the empty folder
-		fs.rmdirSync(folderPath);
-	} else {
-		console.log(`Folder ${folderPath} does not exist.`);
-	}
-}
-
 export function readData(filePath: string): Promise<any> {
 	return new Promise((resolve, reject) => {
 		fs.readFile(filePath, 'utf8', (err, jsonString) => {

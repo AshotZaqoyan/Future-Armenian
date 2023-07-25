@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<div id="waitingAnimation" style="display: none;">
+	<div id="waitingAnimation" class="hide">
 		<div>
 			<div class="outerCircle"></div>
 			<div class="innerCircle"></div>
@@ -23,7 +23,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="startdiv hide" id="startdiv">
+	<div class="start-div hide" id="start-div">
 		<div class="container-start">
 			<img src="src/img/fut.svg" class="fut">
 			<p class="start-text">Համակարգչային ծրագիրը իրականացնում է առաջին համահայկական քաղաքացիական Համաժողովի
@@ -31,8 +31,8 @@
 				վիճակահանությունը՝ ապահովելով թափանցիկություն և հասարակության բոլոր շերտերի ներկայացվածություն։
 				<br><br>
 			</p>
-			<button class="button-start" id="btn_start">Սկսել</button>
-			<p class="start-text2">
+			<button class="button-start" id="btn-start">Սկսել</button>
+			<p class="start-text-2">
 				Ծրագրի ստեղծմանը մասնակցել են՝
 				<br>-Առաջատար Տեխնոլոգիաների Ձեռնարկությունների Միությունը (UATE),
 				<br>-Վարդենիսի ավագ դպրոցի «Արմաթ» ինժեներական լաբորատորիան (armath-shine),
@@ -60,13 +60,12 @@
 		<div id="reset"><img id="reset-img" src="src/img/reset.svg" alt="reset"></div>
 		<div id="export"><img id="export-img" src="src/img/export.svg" alt="export"></div>
 		<div id="replaceing-people"><img id="replaceing-people-img" src="src/img/replacingPeople.svg" alt="replace people"></div>
-		<button id="replaceing-people-confirm" style="display: none;">Հաստատել</button>
-		<img src="src/img/fut.svg" class="conimg" style="margin-top: 10px;">
+		<button id="replaceing-people-confirm" class="hide">Հաստատել</button>
+		<img src="src/img/fut.svg" class="conimg">
 		<br>
-		<h1 style="color: #00605F;">Ընտրության արդյունքներ</h1>
+		<h1 class="result-title">Ընտրության արդյունքներ</h1>
 		<div id="result-tables"></div>
 	</div>
 	<script src="dist/renderer.js"></script> <!-- Update the script source -->
 </body>
-
 </html>
