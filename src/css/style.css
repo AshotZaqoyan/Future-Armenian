@@ -357,6 +357,7 @@ input {
 	margin: 50px;
 }
 
+
 .show-number-p {
 	color: #777;
 	font-size: 17px;
@@ -553,7 +554,6 @@ input {
 .page {
 	width: 100%;
 	height: calc(100% - 70px);
-
 }
 
 .table-title {

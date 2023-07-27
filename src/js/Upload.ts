@@ -1,6 +1,5 @@
 import { analysisExcel } from "./analysisExcel";
 
-
 export function upload(filePath: FileList, Button: HTMLButtonElement) {
 	let TypeError = document.getElementById("TypeError");
 	let Name = document.getElementById("FileUploadName");
