@@ -35,23 +35,18 @@ export function methodologyChecker(sheetNamesPath = './src/database/sheetNames.j
 
 				if (numPeople !== 0) {
 					for (const key in criteria) {
-						if (criteria.hasOwnProperty(key)) {
-							const values = criteria[key];
-							let equalSum = 0;
-							let greaterSum = 0;
+						const values = criteria[key];
+						let equalSum = 0;
+						let greaterSum = 0;
 
-							for (const subKey in values) {
-								if (values.hasOwnProperty(subKey)) {
-									const subValues = values[subKey];
+						for (const subKey in values) {
+							const subValues = values[subKey];
 
-									if (subValues[0]) {
-										if (subValues[3]) {
-											equalSum += subValues[0];
-										}else{
-											greaterSum += subValues[0];
-										}
-									}
-										
+							if (subValues[0]) {
+								if (subValues[3]) {
+									equalSum += subValues[0];
+								} else {
+									greaterSum += subValues[0];
 								}
 							}
 							if (!(equalSum === numPeople || ((equalSum + greaterSum >= numPeople) && equalSum <= numPeople))) {

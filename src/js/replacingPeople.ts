@@ -4,15 +4,18 @@ import { readData, saveData } from "./editData";
 interface TableData {
 	[sheetName: string]: string[];
 }
+
+interface UserData {
+	[key: string]: string
+}
+
 function setAllValues(data) {
 	for (const key in data) {
-		if (data.hasOwnProperty(key)) {
-			const value = data[key];
-			if (Array.isArray(value)) {
-				data[key] = [0, 0, 0, true];
-			} else if (typeof value === 'object') {
-				setAllValues(value);
-			}
+		const value = data[key];
+		if (Array.isArray(value)) {
+			data[key] = [0, 0, 0, true];
+		} else if (typeof value === 'object') {
+			setAllValues(value);
 		}
 	}
 }
@@ -64,7 +67,7 @@ async function createMethodology(tablesData) {
 				const distinctive: string = sheetNames[replacingSheetNames[replacingSheetName]][0]
 				replacingSheetNamesJson[replacingSheetNames[replacingSheetName]] = [distinctive]
 				const resultData = await readData(`./src/database/result/${replacingSheetNames[replacingSheetName]}.json`);
-				const data = []
+				const data:UserData[] = []
 				for (const distinctiveValueIndex in replacingPeopleDistinctive) {
 					const distinctiveValue = replacingPeopleDistinctive[distinctiveValueIndex]
 					for (const person of resultData) {
@@ -89,11 +92,11 @@ export function replacingPeople() {
 	checkboxes.forEach((checkbox) => {
 		const checkboxElement = checkbox as HTMLInputElement;
 		checkboxElement.style.display = checkboxElement.style.display === "none" ? "initial" : "none";
-		checkboxElement.checked=false
+		checkboxElement.checked = false
 	});
 
 	const confirm = document.getElementById("replaceing-people-confirm")
-	const className=confirm.classList[0]
+	const className = confirm.classList[0]
 	if (className === "hide") {
 		confirm.classList.remove(className)
 		confirm.addEventListener("click", () => {

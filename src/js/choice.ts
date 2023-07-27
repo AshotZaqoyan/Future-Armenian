@@ -15,7 +15,7 @@ interface criteria {
 interface noResult {
 	[country: string]: {
 		[property: string]: string[];
-	  };
+	};
 }
 
 let distinctive = "";
@@ -51,13 +51,11 @@ function dataAnalysis() {
 
 function incrementCriteriaValue(person: UserData) {
 	for (const key in criteria) {
-		if (criteria.hasOwnProperty(key) && person.hasOwnProperty(key)) {
-			const value = person[key];
-			const index = data.findIndex((p) => p === person);
+		const value = person[key];
+		const index = data.findIndex((p) => p === person);
 
-			if (index >= 0 && criteria[key][value]) {
-				criteria[key][value][1]++;
-			}
+		if (index >= 0 && criteria[key][value]) {
+			criteria[key][value][1]++;
 		}
 	}
 }
@@ -84,20 +82,16 @@ function little() {
 	let breakOrNot = false;
 
 	outerLoop: for (const key in criteria) {
-		if (criteria.hasOwnProperty(key)) {
-			const value = criteria[key];
-			if (typeof value === 'object') {
-				for (const childKey in value) {
-					if (value.hasOwnProperty(childKey)) {
-						const childValue = value[childKey];
-						if (childValue[2] < minValue && childValue[0] !== childValue[1] && childValue[3]) {
-							minValue = childValue[2];
-							minKey = childKey;
-							parentKey = key;
-							if (childValue[2] <= 0) {
-								breakOrNot = true;
-							}
-						}
+		const value = criteria[key];
+		if (typeof value === 'object') {
+			for (const childKey in value) {
+				const childValue = value[childKey];
+				if (childValue[2] < minValue && childValue[0] !== childValue[1] && childValue[3]) {
+					minValue = childValue[2];
+					minKey = childKey;
+					parentKey = key;
+					if (childValue[2] <= 0) {
+						breakOrNot = true;
 					}
 				}
 			}
@@ -125,24 +119,19 @@ function dataCleaning(keysToDelete) {
 
 function equal() {
 	const equalPairs = [];
-
 	for (const key in criteria) {
-		if (criteria.hasOwnProperty(key)) {
-			const value = criteria[key];
-			if (typeof value === 'object') {
-				for (const childKey in value) {
-					if (value.hasOwnProperty(childKey)) {
-						const childValue = value[childKey];
-						if (childValue[0] === childValue[1]) {
-							equalPairs.push({ [key]: childKey });
-						}
-					}
+		const value = criteria[key];
+		if (typeof value === 'object') {
+			for (const childKey in value) {
+				const childValue = value[childKey];
+				if (childValue[0] === childValue[1]) {
+					equalPairs.push({ [key]: childKey });
 				}
 			}
 		}
 	}
 	if (equalPairs.length !== 0) {
-		dataCleaning(equalPairs)
+		dataCleaning(equalPairs);
 	}
 }
 

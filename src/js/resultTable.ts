@@ -46,15 +46,17 @@ function jsonToTable(result, distinctive, sheetName) {
 		row.appendChild(document.createElement("td"));
 		tbody.appendChild(row);
 
+		const icon = document.getElementById("replaceing-people-img") as HTMLImageElement;
 		// Add click event listener to each row
 		row.addEventListener("click", function () {
-			// Toggle the checkbox state
-			checkbox.checked = !checkbox.checked;
+			if (icon.src.includes("src/img/close.svg")) {
+				// Toggle the checkbox state
+				checkbox.checked = !checkbox.checked;
 
-			// Change the background color of the row when clicked
-			row.style.backgroundColor = checkbox.checked ? "#ff5f5f1a" : "";
+				// Change the background color of the row when clicked
+				row.style.backgroundColor = checkbox.checked ? "#ff5f5f1a" : "";
+			}
 		});
-
 		// Add click event listener to each checkbox
 		checkbox.addEventListener("click", function (event) {
 			// Prevent the row click event from firing when clicking the checkbox
@@ -110,6 +112,7 @@ export async function resultTableAdd() {
 		const sheetNames = await readData('./src/database/sheetNames.json');
 		const onlySheetNames = Object.keys(sheetNames);
 		const resultDiv = document.getElementById("result-tables");
+		const showHideButton = document.getElementById("replaceing-people");
 
 		for (const sheetName of onlySheetNames) {
 			const result = await readData(`./src/database/result/${sheetName}.json`);
@@ -128,7 +131,6 @@ export async function resultTableAdd() {
 		document.getElementById("start-div").classList.add("hide");
 		document.getElementById("result").classList.replace("hide", "result");
 
-		const showHideButton = document.getElementById("replaceing-people");
 		document.getElementById("export").addEventListener("click", createExcelFile);
 		document.getElementById("reset").addEventListener("click", () => {
 			createwindow("436px", "200px", "<div class='reset-div'><h2 style='margin-bottom: 10px;color: #27958f;'>Վերագործարկում</h2><p>Սեղմելով հաստատել կջնջվի ամբողջ տվյալները և այլևս չեք կարողանա վերականգնել դրանք</p><button id='reset-confirm'>Հաստատել<buttton></div>")
@@ -137,6 +139,7 @@ export async function resultTableAdd() {
 				window.location.reload();
 			})
 		})
+
 		showHideButton.addEventListener("click", function () {
 			const icon = document.getElementById("replaceing-people-img") as HTMLImageElement;
 			if (icon.src.includes("src/img/replacingPeople.svg")) {

@@ -54,15 +54,12 @@ export function analysisExcel(files: FileList) {
 
 			datajson.forEach(obj => {
 				for (const key in obj) {
-					if (obj.hasOwnProperty(key)) {
-
-						if (!result[key]) {
-							result[key] = [];
-						}
-						const value = obj[key];
-						if (!result[key].includes(value)) {
-							result[key].push(value);
-						}
+					if (!result[key]) {
+						result[key] = [];
+					}
+					const value = obj[key];
+					if (!result[key].includes(value)) {
+						result[key].push(value);
 					}
 				}
 			});
@@ -77,12 +74,10 @@ export function analysisExcel(files: FileList) {
 			const convertedResult: convertedResult = {};
 
 			for (const key in result) {
-				if (result.hasOwnProperty(key)) {
-					convertedResult[key] = {};
+				convertedResult[key] = {};
 
-					for (const value of result[key]) {
-						convertedResult[key][value] = ["", 0, 0, true];
-					}
+				for (const value of result[key]) {
+					convertedResult[key][value] = ["", 0, 0, true];
 				}
 			}
 
