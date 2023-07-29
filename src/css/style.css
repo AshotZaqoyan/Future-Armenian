@@ -32,6 +32,11 @@
 	border: 3px solid #ffffff;
 }
 
+button,
+.cursor-pointer {
+	cursor: pointer;
+}
+
 /* start window start*/
 body {
 	background-color: #F5F8FD;
@@ -739,14 +744,14 @@ input:focus {
 
 .search-icon {
 	width: 20px;
-	margin-left: -27px;
+	margin: 0 0 5px -27px;
 }
 
 .hide {
 	display: none;
 }
 
-.show-display-flex{
+.show-display-flex {
 	display: flex;
 }
 
@@ -758,6 +763,6 @@ input:focus {
 	margin-top: 10px;
 }
 
-.right-arrow{
+.right-arrow {
 	transform: rotate(180deg);
 }

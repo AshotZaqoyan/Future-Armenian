@@ -5,7 +5,7 @@ import { getMethodology } from "./getMethodology";
 import { methodologyTableCreate } from "./methodologyTableCreator";
 import { resultTableAdd } from "./resultTable";
 import { pushError } from "./methodologyChecker";
-
+import { start } from "../renderer";
 
 export async function situationCheck(path = "./src/database/") {
 	try {
@@ -24,10 +24,12 @@ export async function situationCheck(path = "./src/database/") {
 					}
 				} catch (error) {
 					console.log("Error:", error.message);
-					// Handle the error appropriately
 				}
-
-				createwindow("100vh", "80vh", `<div class="show-number-h">${path === "./src/database/" ? "Ընտրության" : "Փոփոխման"} մեթոդաբանություն</div><div class="show-number-p">Մենք չկարողացանք ընտրանք կատարել, խնդում ենք վերանայել ընտրության մեթոդաբանությունը</div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn right-arrow" id="nextPage"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="method-button" id="method-button">Հաստատել</button>`);
+				const changeOrChoice = path === "./src/database/" ? true : false;
+				createwindow("100vh", "80vh", `${changeOrChoice ? '<img src="src/img/back.svg" alt="back" class="btn-back cursor-pointer" id="back">' : ""}<div class="show-number-h">${changeOrChoice ? "Ընտրության" : "Փոփոխման"} մեթոդաբանություն</div><div class="show-number-p">Մենք չկարողացանք ընտրանք կատարել, խնդում ենք վերանայել ընտրության մեթոդաբանությունը</div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn cursor-pointer" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn right-arrow cursor-pointer" id="nextPage"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="method-button" id="method-button">Հաստատել</button>`);
+				if(changeOrChoice){
+					document.getElementById('back').addEventListener('click', start)
+				}
 				addtables(tables)
 				outerloop: for (let i = 0; noResultSheets.length > i; i++) {
 					let errorText = null

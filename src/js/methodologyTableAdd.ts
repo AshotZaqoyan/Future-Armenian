@@ -48,7 +48,7 @@ export function addtables(tables: string[]) {
 				if (totalPages !== 1) {
 					// Dots
 					const dot: HTMLElement = document.createElement("div");
-					dot.setAttribute("class", "dot");
+					dot.setAttribute("class", "dot cursor-pointer");
 					dot.setAttribute("id", "dot" + i);
 					dotsDiv.appendChild(dot);
 				}

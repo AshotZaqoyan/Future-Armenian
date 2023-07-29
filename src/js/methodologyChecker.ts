@@ -49,9 +49,10 @@ export function methodologyChecker(sheetNamesPath = './src/database/sheetNames.j
 									greaterSum += subValues[0];
 								}
 							}
-							if (!(equalSum === numPeople || ((equalSum + greaterSum >= numPeople) && equalSum <= numPeople))) {
-								errors.push(key);
-							}
+
+						}
+						if (!(equalSum === numPeople || ((equalSum + greaterSum >= numPeople) && equalSum < numPeople))) {
+							errors.push(key);
 						}
 					}
 				} else {

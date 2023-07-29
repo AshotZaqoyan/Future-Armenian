@@ -1,7 +1,7 @@
 import { createwindow } from "./js/window";
 import { upload } from "./js/Upload"
 import { situationCheck } from "./js/statusChecker";
-
+import { waitingAnimation } from "./js/waitingAnimation";
 document.getElementById("start-div").classList.remove("hide");
 export function start() {
 	createwindow("auto", "auto", `
@@ -31,3 +31,4 @@ export function start() {
 situationCheck()
 document.getElementById('btn-start').addEventListener('click', start);
 document.getElementById("close").addEventListener("click", () => { (<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide") })
+waitingAnimation()

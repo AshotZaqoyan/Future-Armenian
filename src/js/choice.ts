@@ -136,7 +136,7 @@ function equal() {
 }
 
 function mergeErrors(arr: string[]) {
-	console.log(arr)
+
 	const result = {};
 
 	arr.forEach((obj) => {
@@ -223,7 +223,7 @@ export async function choice(path: string = "./src/database/") {
 				window.location.reload();
 			}
 		} else {
-			saveData(`${path}noResult.json`, noResult)
+			saveData(`${path}noResult.json`, {...noResult})
 			situationCheck(path)
 		}
 	} catch (err) {
