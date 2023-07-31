@@ -30,7 +30,7 @@ export function methodologyTableCreate(methodologyAndNumber) {
 
 		for (const key in methodology) {
 			const td = document.createElement('td');
-			const value = Object.keys(methodology[key])[i] || ''; // Handle empty values
+			const value = Object.keys(methodology[key])[i] || '';
 			const inputValue = String((Object.values(methodology[key])[i] || [0])[0])
 			const greaterOrEqualValue = (Object.values(methodology[key])[i] || [0, 0, 0, true])[3]
 			td.textContent = value;
