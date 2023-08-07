@@ -1,0 +1,18 @@
+{
+	"appId": "future-armenian",
+	"productName": "Future Armenian",
+	"directories": {
+		"output": "dist/installer"
+	},
+	"win": {
+		"icon": "src/img/FutureArmenian.ico",
+		"target": [
+			{
+				"target": "dir",
+				"arch": [
+					"x64"
+				]
+			}
+		]
+	}
+}

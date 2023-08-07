@@ -32,7 +32,8 @@
 	border: 3px solid #ffffff;
 }
 
-button, .cursor-pointer {
+button,
+.cursor-pointer {
 	border: none;
 	cursor: pointer;
 }
@@ -765,4 +766,9 @@ input:focus {
 
 .right-arrow {
 	transform: rotate(180deg);
+}
+
+.methodology-title {
+	margin-bottom: 10px;
+	color: #27958f;
 }

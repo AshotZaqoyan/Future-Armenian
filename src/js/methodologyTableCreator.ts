@@ -31,8 +31,9 @@ export function methodologyTableCreate(methodologyAndNumber) {
 		for (const key in methodology) {
 			const td = document.createElement('td');
 			const value = Object.keys(methodology[key])[i] || '';
-			const inputValue = (Object.values(methodology[key])[i] || [0])[0]
-			const greaterOrEqualValue = (Object.values(methodology[key])[i] || [0, 0, 0, true])[3]
+			const objValues=Object.values(methodology[key])[i]
+			const inputValue = (objValues || [0])[0]
+			const greaterOrEqualValue = (objValues || [0, 0, 0, true])[3]
 			td.textContent = value;
 			row.appendChild(td);
 
