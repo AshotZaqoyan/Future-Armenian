@@ -20,7 +20,6 @@
 	"devDependencies": {
 		"electron": "^25.4.0",
 		"electron-builder": "^24.6.3",
-		"electron-packager": "^17.1.1",
 		"fs": "^0.0.1-security"
 	}
 }
