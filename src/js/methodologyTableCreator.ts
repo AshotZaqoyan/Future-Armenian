@@ -1,109 +1,75 @@
-export function showPage(pageNumber: number): void {
-	const pages: HTMLCollectionOf<Element> = document.getElementsByClassName("page");
-	const errorTexts: HTMLCollectionOf<Element> = document.getElementsByClassName("errorText");
-	const dots: HTMLCollectionOf<Element> = document.getElementsByClassName("dot");
-	for (let i: number = 0; i < pages.length; i++) {
-		(pages[i] as HTMLElement).style.display = "none";
-		(errorTexts[i] as HTMLElement).style.display = "none";
-		if (pages.length != 1) {
-			(dots[i] as HTMLElement).classList.remove("dot-a")
-		}
+export function methodologyTableCreate(methodologyAndNumber) {
+	let methodology = methodologyAndNumber[0]
+	// Create the table element
+	const table = document.createElement('table');
+	table.setAttribute("class", "styled-table");
+	// Create the table header
+	const thead = document.createElement('thead');
+	const headerRow = document.createElement('tr');
+
+	for (const key in methodology) {
+		const th = document.createElement('th');
+		th.textContent = key;
+		headerRow.appendChild(th);
+		// Add a column header for the input fields
+		const inputTh = document.createElement('th');
+		inputTh.textContent = '№';
+		headerRow.appendChild(inputTh);
 	}
-	const page: HTMLElement | null = document.getElementById("page" + pageNumber);
-	const errorText: HTMLElement | null = document.getElementById("errorText" + pageNumber);
-	const dot: HTMLElement | null = document.getElementById("dot" + pageNumber);
-	if (page) {
-		page.style.display = "flex";
-		errorText.style.display = "inline";
-		if (pages.length != 1) {
-			dot.classList.add("dot-a")
-		}
-	}
-}
 
-export function addtables(tables: string[]) {
-	let currentPage = 1;
-	let totalPages = 1;
-	function createPages(num: string[]): void {
-		totalPages = num.length;
-		const pagesDiv: HTMLElement | null = document.getElementById("table-container");
-		const dotsDiv: HTMLElement | null = document.getElementById("dots-div");
-		const errorDiv: HTMLElement | null = document.getElementById("error-div");
-		if (pagesDiv) {
-			for (let i: number = 1; i <= totalPages; i++) {
-				// Pages
-				const pageDiv: HTMLElement = document.createElement("div");
-				pageDiv.setAttribute("class", "page");
-				pageDiv.setAttribute("id", "page" + i);
-				pageDiv.innerHTML = `<div class="inp-box"><p class="inp-p">Մուտքագրել մարդկանց թվաքանակը</p><input type="number" min="1" class="inp" id="${i}" placeholder="200"></div>` + num[i - 1]
-				pagesDiv.appendChild(pageDiv);
+	thead.appendChild(headerRow);
+	table.appendChild(thead);
 
-				const errorText: HTMLElement = document.createElement("p");
-				errorText.setAttribute("class", "errorText");
-				errorText.setAttribute("id", "errorText" + i);
-				errorDiv.appendChild(errorText);
+	const tbody = document.createElement('tbody');
 
-				if (totalPages !== 1) {
-					// Dots
-					const dot: HTMLElement = document.createElement("div");
-					dot.setAttribute("class", "dot");
-					dot.setAttribute("id", "dot" + i);
-					dotsDiv.appendChild(dot);
+	const maxLength = Math.max(...Object.values(methodology).map(arr => Object.keys(arr).length));
+
+	for (let i = 0; i < maxLength; i++) {
+
+		const row = document.createElement('tr');
+
+		for (const key in methodology) {
+			const td = document.createElement('td');
+			const value = Object.keys(methodology[key])[i] || '';
+			const objValues=Object.values(methodology[key])[i]
+			const inputValue = (objValues || [0])[0]
+			const greaterOrEqualValue = (objValues || [0, 0, 0, true])[3]
+			td.textContent = value;
+			row.appendChild(td);
+
+			if (value) { // Skip creating and appending empty td elements
+				const inputTd = document.createElement('td');
+				const div = document.createElement('div')
+				const input = document.createElement('input');
+				const greaterOrEqual = document.createElement('button');
+				div.setAttribute("class", "input-div");
+				input.type = 'number';
+				input.dataset.key = key;
+				input.dataset.index = value; // Set the data-index as the td name
+				input.setAttribute("value", inputValue);
+				input.setAttribute("min", "0");
+				input.setAttribute("id", "tableinput");
+				div.appendChild(input);
+
+				greaterOrEqual.setAttribute("id", `${key}${value}`);
+				greaterOrEqual.setAttribute("class", "greater-or-equal");
+				if (greaterOrEqualValue) {
+					greaterOrEqual.innerText = "="
+					greaterOrEqual.setAttribute("data-text", "=")
+				} else {
+					greaterOrEqual.innerText = "≥"
+					greaterOrEqual.setAttribute("data-text", "≥")
 				}
-
-				showPage(1)
+				div.appendChild(greaterOrEqual);
+				inputTd.appendChild(div);
+				row.appendChild(inputTd);
+			} else { // Handle empty value, leave the input field blank
+				const inputTd = document.createElement('td');
+				row.appendChild(inputTd);
 			}
-			
-			showPageWhenClickedDot()
-
 		}
-		if (totalPages === 1) {
-			document.getElementById("previousPage").classList.add("hide")
-			document.getElementById("nextPage").classList.add("hide")
-		}
+		tbody.appendChild(row);
 	}
-
-	function previousPage(): void {
-		if (currentPage > 1) {
-			currentPage--;
-			showPage(currentPage);
-		} else {
-			currentPage=totalPages
-			showPage(totalPages);
-		}
-	}
-
-	function nextPage(): void {
-		if (currentPage < totalPages) {
-			currentPage++;
-			showPage(currentPage);
-		} else {
-			currentPage=1
-			showPage(1);
-		}
-	}
-
-
-	function showPageWhenClickedDot() {
-		// Get all elements with the same class
-		const elements = document.getElementsByClassName('dot');
-
-		// Convert the HTMLCollection to an array for easier manipulation
-		const elementsArray = Array.from(elements);
-		// Add event listener to each element
-		elementsArray.forEach((element, index) => {
-			element.addEventListener('click', (event) => {
-				showPage(index + 1);
-				currentPage = index + 1;
-			});
-		});
-	}
-
-	showPage(currentPage);
-
-	document.getElementById('nextPage').addEventListener('click', nextPage);
-	document.getElementById("previousPage").addEventListener('click', previousPage)
-
-	createPages(tables)
-
+	table.appendChild(tbody);
+	return table
 }

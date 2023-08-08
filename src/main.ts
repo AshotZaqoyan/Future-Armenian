@@ -5,14 +5,16 @@ import * as url from 'url';
 let mainWindow: BrowserWindow | null;
 
 function createWindow() {
+	process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 	mainWindow = new BrowserWindow({
-		width: 800,
-		height: 600,
+		width: 1200,
+		height: 850,
 		title: "Future Armenian",
 		icon: 'src/img/FutureArmenian.ico',
 		webPreferences: {
 			nodeIntegration: true,
-			contextIsolation: false
+			contextIsolation: false,
+			// devTools: false // for building installer
 		}
 	});
 
@@ -25,8 +27,12 @@ function createWindow() {
 	mainWindow.loadURL(indexPath);
 
 	// Remove the menu bar (optional)
-	//mainWindow.removeMenu();
-
+	// mainWindow.removeMenu();
+	mainWindow.webContents.on('before-input-event', (event, input) => {
+		if (input.control && input.key.toLowerCase() === 'r') {
+		  mainWindow.webContents.reload();
+		}
+	  });
 	// Open DevTools (optional)
 	mainWindow.webContents.openDevTools();
 

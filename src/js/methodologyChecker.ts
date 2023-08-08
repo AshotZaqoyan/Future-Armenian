@@ -1,14 +1,13 @@
 import { readData } from "./editData";
-import { showPage } from "./methodologyTableCreator";
-import { selection } from "./selection";
+import { showPage } from "./methodologyTableAdd";
+import { choice } from "./choice";
 
-function pushError(error: string, pageNumber: number) {
+export function pushError(error: string, pageNumber: number) {
 	document.getElementById('errorText' + pageNumber).innerHTML = error
 }
 
-export function methodologyChecker() {
-	const sheetNamesJson = readData('./src/database/sheetNames.json');
-
+export function methodologyChecker(sheetNamesPath = './src/database/sheetNames.json', path = "./src/database/") {
+	const sheetNamesJson = readData(sheetNamesPath);
 	sheetNamesJson.then((sheetNamesJson) => {
 		const sheetNames = Object.keys(sheetNamesJson);
 		let pagesWithErrors = [];
@@ -21,43 +20,39 @@ export function methodologyChecker() {
 					showPage(Math.min.apply(Math, pagesWithErrors));
 				} else {
 					(<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide");
-					document.getElementById("startdiv").classList.add("hide");
-					document.getElementById("result").classList.replace("hide", "result");
-					selection();
+					choice(path);
 				}
 				return;
 			}
 
-			const sheetPath = readData('./src/database/methodology/' + sheetNames[currentIndex] + '.json');
+			const sheetPath = readData(`${path}methodology/` + sheetNames[currentIndex] + '.json');
 
 			sheetPath.then((sheetData) => {
-				let errors : string[] = [];
+				let errors: string[] = [];
 				let numberEnteredOrNot = true;
 				const criteria = sheetData[0];
 				const numPeople = sheetData[1];
 
 				if (numPeople !== 0) {
 					for (const key in criteria) {
-						if (criteria.hasOwnProperty(key)) {
-							const values = criteria[key];
-							let equalSum = 0;
-							let greaterSum = 0;
+						const values = criteria[key];
+						let equalSum = 0;
+						let greaterSum = 0;
 
-							for (const subKey in values) {
-								if (values.hasOwnProperty(subKey)) {
-									const subValues = values[subKey];
+						for (const subKey in values) {
+							const subValues = values[subKey];
 
-									if (subValues[0]) {
-										equalSum += subValues[0];
-									} else {
-										greaterSum += subValues[0];
-									}
+							if (subValues[0]) {
+								if (subValues[3]) {
+									equalSum += subValues[0];
+								} else {
+									greaterSum += subValues[0];
 								}
 							}
 
-							if (equalSum < numPeople && !(equalSum + greaterSum >= numPeople)) {
-								errors.push(key);
-							}
+						}
+						if (!(equalSum === numPeople || ((equalSum + greaterSum >= numPeople) && equalSum < numPeople))) {
+							errors.push(key);
 						}
 					}
 				} else {
@@ -75,7 +70,7 @@ export function methodologyChecker() {
 					}
 				}
 
-				console.clear()
+
 				currentIndex++;
 				processNextSheet(); // Process the next sheet
 			}).catch((error) => {

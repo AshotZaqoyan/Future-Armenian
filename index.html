@@ -10,14 +10,20 @@
 </head>
 
 <body>
+	<div id="waitingAnimation" class="show-display-flex">
+		<div>
+			<div class="outerCircle"></div>
+			<div class="innerCircle"></div>
+		</div>
+	</div>
 	<div class="bgtransparent hide" id="bgtransparent">
 		<div class="container-window">
-			<div class="circle" id="close"><img src="src/img/close.svg" alt="" class="close"></div>
+			<button class="circle" id="close"><img src="src/img/close.svg" alt="" class="close"></button>
 			<div class="window-element" id="window-element">
 			</div>
 		</div>
 	</div>
-	<div class="startdiv" id="startdiv">
+	<div class="start-div hide" id="start-div">
 		<div class="container-start">
 			<img src="src/img/fut.svg" class="fut">
 			<p class="start-text">Համակարգչային ծրագիրը իրականացնում է առաջին համահայկական քաղաքացիական Համաժողովի
@@ -25,8 +31,8 @@
 				վիճակահանությունը՝ ապահովելով թափանցիկություն և հասարակության բոլոր շերտերի ներկայացվածություն։
 				<br><br>
 			</p>
-			<button class="button-start" id="btn_start">Սկսել</button>
-			<p class="start-text2">
+			<button class="button-start" id="btn-start">Սկսել</button>
+			<p class="start-text-2">
 				Ծրագրի ստեղծմանը մասնակցել են՝
 				<br>-Առաջատար Տեխնոլոգիաների Ձեռնարկությունների Միությունը (UATE),
 				<br>-Վարդենիսի ավագ դպրոցի «Արմաթ» ինժեներական լաբորատորիան (armath-shine),
@@ -51,14 +57,15 @@
 	</div>
 	<br><br>
 	<div class="hide" id="result">
-		<img src="src/img/fut.svg" class="conimg" style="margin-top: 10px;">
+		<button id="reset"><img id="reset-img" src="src/img/reset.svg" alt="reset"></button>
+		<button id="export"><img id="export-img" src="src/img/export.svg" alt="export"></button>
+		<button id="replaceing-people"><img id="replaceing-people-img" src="src/img/replacingPeople.svg" alt="replace people"></button>
+		<button id="replaceing-people-confirm" class="hide">Փոխարինել</button>
+		<img src="src/img/fut.svg" class="conimg">
 		<br>
-		<h1 style="color: #00605F;">Ընտրության արդյունքներ</h1>
-		<br>
-		<table class="styled-table-result" id="styled-table-result">
-		</table>
+		<h1 class="result-title">Ընտրության արդյունքներ</h1>
+		<div id="result-tables"></div>
 	</div>
 	<script src="dist/renderer.js"></script> <!-- Update the script source -->
 </body>
-
 </html>

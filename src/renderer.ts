@@ -1,5 +1,7 @@
 import { createwindow } from "./js/window";
 import { upload } from "./js/Upload"
+import { situationCheck } from "./js/statusChecker";
+import { waitingAnimation } from "./js/waitingAnimation";
 
 export function start() {
 	createwindow("auto", "auto", `
@@ -21,16 +23,12 @@ export function start() {
 <div class="next-box"><button class="btn-next" id="btn-next" disabled>Հաջորդը</button></div>
 `);
 
-	let filePath: HTMLInputElement = <HTMLInputElement>document.getElementById("FileUpload");
+	let filePath = <HTMLInputElement>document.getElementById("FileUpload");
 	let Button = <HTMLButtonElement>document.getElementById("btn-next");
-
-	filePath.addEventListener("change", (event: Event) => {
-		const file = filePath.files[0];
-		if (file) {
-			upload(file, Button);
-		}
-	});
+	
+	filePath.addEventListener("change", (event: Event) => { upload(filePath.files, Button) })
 };
-
-document.getElementById('btn_start').addEventListener('click', start);
+situationCheck()
+document.getElementById('btn-start').addEventListener('click', start);
 document.getElementById("close").addEventListener("click", () => { (<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide") })
+waitingAnimation()

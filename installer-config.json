@@ -1,0 +1,24 @@
+{
+	"appId": "future-armenian",
+	"productName": "Future Armenian",
+	"directories": {
+		"output": "dist/installer"
+	},
+	"win": {
+		"icon": "src/img/FutureArmenian.ico",
+		"target": [
+			{
+				"target": "nsis"
+			}
+		]
+	},
+	"nsis": {
+		"oneClick": false,
+		"createDesktopShortcut": true,
+		"allowToChangeInstallationDirectory": true,
+		"installerIcon": "src/img/install.ico",
+		"uninstallerIcon": "src/img/FutureArmenian.ico",
+		"uninstallDisplayName": "Future Armenian",
+		"license": "license.md"
+	}
+}
