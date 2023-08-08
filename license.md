@@ -8,7 +8,7 @@ By installing and using the software, you agree to be bound by the terms and con
 Armath Shine ("Publisher") grants you a non-exclusive, non-transferable, limited license to install and use the software, "Future Armenian" ("Software"), for personal or organizational use, subject to the terms and conditions of this Agreement.
 
 2. SELECTION PROCESS
-The Software provides an opportunity for users to organize a transparent selection. The selection process ensures a representative sampling. This method ensures fairness and unbiased participant selection.
+The Software provides an opportunity for users to organize a transparent selection. The selection process ensures a representative sampling. This method ensures unbiased selection.
 
 3. DISCLAIMERS
 The Publisher makes no warranties, express or implied, regarding the outcomes of the selection process or any activities that may result from it. The Publisher shall not be responsible for any actions, decisions, or consequences arising from participation in the selection process or any related activities.

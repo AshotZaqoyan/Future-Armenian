@@ -27,7 +27,7 @@ function createWindow() {
 	mainWindow.loadURL(indexPath);
 
 	// Remove the menu bar (optional)
-	//mainWindow.removeMenu();
+	// mainWindow.removeMenu();
 	mainWindow.webContents.on('before-input-event', (event, input) => {
 		if (input.control && input.key.toLowerCase() === 'r') {
 		  mainWindow.webContents.reload();

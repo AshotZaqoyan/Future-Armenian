@@ -1,7 +1,8 @@
 {
 	"name": "future-armenian",
 	"version": "1.0.0",
-	"description": "",
+	"description": "The Software provides an opportunity for users to organize a transparent selection. The selection process ensures a representative sampling. This method ensures unbiased selection.",
+	"author": "Ashot Zaqoyan (ArmathShine student) zaqoyanashot15@gmail.com",
 	"main": "dist/main.js",
 	"scripts": {
 		"build": "webpack",
