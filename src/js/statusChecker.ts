@@ -20,14 +20,14 @@ export async function situationCheck(path = "./src/database/") {
 					for (const noResultSheet of noResultSheets) {
 						const methodology = await readData(`${path}methodology/${noResultSheet}.json`);
 						const table = methodologyTableCreate(methodology)
-						tables.push([table.outerHTML, methodology[1]])
+						tables.push([table.outerHTML, methodology[1], noResultSheet])
 					}
 				} catch (error) {
 					console.log("Error:", error.message);
 				}
 				const changeOrChoice = path === "./src/database/" ? true : false;
 				createwindow("100vh", "80vh", `${changeOrChoice ? '<img src="src/img/back.svg" alt="back" class="btn-back cursor-pointer" id="back">' : ""}<div class="show-number-h">${changeOrChoice ? "Ընտրության" : "Փոփոխման"} մեթոդաբանություն</div><div class="show-number-p">Մենք չկարողացանք ընտրանք կատարել, խնդրում ենք վերանայել ընտրության մեթոդաբանությունը</div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn cursor-pointer" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn right-arrow cursor-pointer" id="nextPage"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="method-button" id="method-button">Հաստատել</button>`);
-				if(changeOrChoice){
+				if (changeOrChoice) {
 					document.getElementById('back').addEventListener('click', start)
 				}
 				addtables(tables)
@@ -83,8 +83,13 @@ export async function situationCheck(path = "./src/database/") {
 				}
 			}
 		}
-
+		if (path === "./src/database/") {
+			document.getElementById("start-div").classList.remove("hide");
+		} 
 	} catch (error) {
 		console.log("Initial situation");
+		if (path === "./src/database/") {
+			document.getElementById("start-div").classList.remove("hide");
+		}
 	}
 }

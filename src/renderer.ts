@@ -2,7 +2,7 @@ import { createwindow } from "./js/window";
 import { upload } from "./js/Upload"
 import { situationCheck } from "./js/statusChecker";
 import { waitingAnimation } from "./js/waitingAnimation";
-document.getElementById("start-div").classList.remove("hide");
+
 export function start() {
 	createwindow("auto", "auto", `
 <div class="container" id="upcontainer">

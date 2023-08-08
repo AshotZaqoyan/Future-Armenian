@@ -93,7 +93,7 @@ export function analysisExcel(files: FileList) {
 
 			const table = methodologyTableCreate(methodology)
 
-			tables.push([table.outerHTML, ''])
+			tables.push([table.outerHTML, '', sheetName])
 		}
 		saveData("./src/database/sheetNames.json", sheetNameJSON)
 

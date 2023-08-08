@@ -220,16 +220,20 @@ export async function choice(path: string = "./src/database/") {
 			} else {
 				saveData('./src/database/replacing/sheetNames.json', [])
 				resultTableAdd()
-				window.location.reload();
+				window.location.reload()
 			}
 		} else {
-			saveData(`${path}noResult.json`, {...noResult})
+			saveData(`${path}noResult.json`, { ...noResult })
 			situationCheck(path)
+			if (path !== "./src/database/") {
+				waitingAnimation()
+			}
 		}
 	} catch (err) {
 		console.error('Error processing data:', err);
 		choice(path)
 	}
-	console.log("ok");
-	waitingAnimation()
+	if (path === "./src/database/") {
+		waitingAnimation()
+	}
 }
