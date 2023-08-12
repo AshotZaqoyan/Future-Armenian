@@ -1,0 +1,64 @@
+/* Start window style*/
+.element-left,
+.element-right {
+
+	position: absolute;
+	bottom: 0;
+}
+
+.element-right {
+	right: 0;
+}
+
+.element-left {
+
+	left: 0;
+}
+
+.container-start {
+	margin-top: 42px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+
+.start-text,
+.start-text-2 {
+	margin-top: 32px;
+	width: 625px;
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 17px;
+
+	color: black;
+}
+
+.start-text {
+	text-align: center;
+}
+
+.armath-shine {
+	height: 70px;
+}
+
+.button-start {
+	width: 460px;
+	height: 72px;
+	margin-top: 15px;
+	margin-bottom: 35px;
+	border-radius: 5px;
+	border: none;
+	background-color: var(--main1);
+	font-family: Montserratbold;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 20px;
+	text-transform: uppercase;
+	color: white;
+
+}
+

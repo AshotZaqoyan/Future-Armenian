@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { readData, saveData } from "./editData";
 import { resultTableAdd } from "./resultTable";
 import { situationCheck } from './statusChecker';
-import { waitingAnimation } from './waitingAnimation';
+import { loading } from './loading';
 
 interface UserData {
 	[key: string]: string
@@ -163,7 +163,7 @@ function mergeErrors(arr: string[]) {
 
 export async function choice(path: string = "./src/database/") {
 	try {
-		waitingAnimation();
+		loading();
 		const sheetNames: string = await readData(`${path}sheetNames.json`);
 		const onlySheetNames = Object.keys(sheetNames)
 		let noResult: noResult[] = [];
@@ -226,7 +226,7 @@ export async function choice(path: string = "./src/database/") {
 			saveData(`${path}noResult.json`, { ...noResult })
 			situationCheck(path)
 			if (path !== "./src/database/") {
-				waitingAnimation()
+				loading()
 			}
 		}
 	} catch (err) {
@@ -234,6 +234,6 @@ export async function choice(path: string = "./src/database/") {
 		choice(path)
 	}
 	if (path === "./src/database/") {
-		waitingAnimation()
+		loading()
 	}
 }
