@@ -207,7 +207,7 @@ export async function choice(path: string = "./src/database/") {
 					if (path !== "./src/database/") {
 						const result = await readData(`./src/database/result/${sheetName}.json`)
 						const replaceablePeople = await readData(`${path}dataForMethodology/${sheetName}.json`)
-						const differences = [...findArrayDifference(replaceablePeople, result, distinctive), ...chosenPeople];
+						const differences = [...chosenPeople, ...findArrayDifference(replaceablePeople, result, distinctive)];
 						await saveData(`./src/database/result/${sheetName}.json`, differences)
 					}
 				}

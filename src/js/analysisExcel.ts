@@ -24,6 +24,15 @@ interface MethodologyAndNumber {
 
 const xlsx = require('xlsx');
 
+// Function to sort an object alphabetically by keys
+function sortObjectAlphabetically(obj) {
+	const sortedObj = {};
+	Object.keys(obj).sort().forEach(key => {
+		sortedObj[key] = obj[key];
+	});
+	return sortedObj;
+}
+
 export function analysisExcel(files: FileList) {
 	const file = files[0];
 	const reader = new FileReader();
@@ -81,7 +90,13 @@ export function analysisExcel(files: FileList) {
 				}
 			}
 
-			let methodology: MethodologyAndNumber = [convertedResult, 0];
+			// Sort the data categories alphabetically
+			const sortedMethodology = {};
+			Object.keys(convertedResult).forEach(key => {
+				sortedMethodology[key] = sortObjectAlphabetically(convertedResult[key]);
+			});
+
+			let methodology: MethodologyAndNumber = [sortedMethodology, 0];
 			saveData("./src/database/methodology/" + sheetName + ".json", JSON.parse(JSON.stringify(methodology).replace(/""/g, "0")))
 
 			if (sheetNameJSON[sheetName].length === 0) {
