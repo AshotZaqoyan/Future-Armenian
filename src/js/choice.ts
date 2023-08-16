@@ -219,7 +219,6 @@ export async function choice(path: string = "./src/database/") {
 				saveData("./src/database/noResult.json", [])
 			} else {
 				saveData('./src/database/replacing/sheetNames.json', [])
-				resultTableAdd()
 				window.location.reload()
 			}
 		} else {

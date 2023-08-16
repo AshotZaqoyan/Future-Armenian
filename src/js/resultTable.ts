@@ -2,6 +2,7 @@ import { readData, saveData } from "./editData";
 import { replacingPeople } from "./replacingPeople";
 import { createExcelFile } from "./createExcelFile";
 import { createwindow } from "./window";
+import { mentionReplacedPeople } from "./mentionReplacedPeople";
 
 function jsonToTable(result, distinctive, sheetName) {
 	let table = document.createElement("table");
@@ -42,8 +43,9 @@ function jsonToTable(result, distinctive, sheetName) {
 			cell.textContent = rowData[header];
 			row.appendChild(cell);
 		});
-
-		row.appendChild(document.createElement("td"));
+		const replacingMention = document.createElement("td")
+		replacingMention.className=`${sheetName}-${rowData[distinctive]}`
+		row.appendChild(replacingMention);
 		tbody.appendChild(row);
 
 		const icon = document.getElementById("replaceing-people-img") as HTMLImageElement;
@@ -127,7 +129,7 @@ export async function resultTableAdd() {
 
 			resultDiv.appendChild(tableContainer);
 		}
-
+		mentionReplacedPeople()
 		document.getElementById("start-div").classList.add("hide");
 		document.getElementById("result").classList.replace("hide", "result");
 
