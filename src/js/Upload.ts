@@ -1,6 +1,7 @@
 import { analysisExcel } from "./analysisExcel";
+import { excelChecker } from "./newExcel";
 
-export function upload(filePath: FileList, Button: HTMLButtonElement) {
+export function upload(filePath: FileList, Button: HTMLButtonElement, situation: string) {
 	let TypeError = document.getElementById("TypeError");
 	let Name = document.getElementById("FileUploadName");
 
@@ -10,7 +11,7 @@ export function upload(filePath: FileList, Button: HTMLButtonElement) {
 			Button.removeAttribute("disabled");
 			Button.classList.add("active");
 			document.getElementById('btn-next').addEventListener('click', () => {
-				analysisExcel(filePath)
+				situation==="Initial"? analysisExcel(filePath): excelChecker(filePath)
 			});
 	} else {
 		Name.innerText = "Քաշեք և թողեք ձեր ֆայլը այստեղ";

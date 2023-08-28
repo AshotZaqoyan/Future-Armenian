@@ -120,16 +120,14 @@
 	align-self: flex-start;
 }
 
-.method-button {
-	margin-right: 20px;
+.method-button,
+.save-only-method {
 	border-radius: 38px;
-	background-color: var(--color2);
 	width: 150px;
 	height: 40px;
 	min-height: 40px;
 	border: none;
 	color: #ffffff;
-	font-size: 18px;
 	font-family: Montserrat arm;
 	font-style: normal;
 	font-weight: 400;
@@ -137,6 +135,18 @@
 	align-self: flex-end;
 	bottom: calc((100vh - 80vh) / 1.6);
 	position: absolute;
+}
+
+.method-button {
+	margin-right: 20px;
+	background-color: var(--color2);
+	font-size: 18px;
+}
+
+.save-only-method {
+	margin-right: 175px;
+	font-size: 14px;
+	background-color: #cdcdcd;
 }
 
 .next-back {

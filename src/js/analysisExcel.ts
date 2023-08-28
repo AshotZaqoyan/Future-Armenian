@@ -24,6 +24,15 @@ interface MethodologyAndNumber {
 
 const xlsx = require('xlsx');
 
+// Function to sort an object alphabetically by keys
+function sortObjectAlphabetically(obj) {
+	const sortedObj = {};
+	Object.keys(obj).sort().forEach(key => {
+		sortedObj[key] = obj[key];
+	});
+	return sortedObj;
+}
+
 export function analysisExcel(files: FileList) {
 	const file = files[0];
 	const reader = new FileReader();
@@ -45,10 +54,12 @@ export function analysisExcel(files: FileList) {
 
 			saveData(`./src/database/completeData/${sheetName}.json`, datajson)
 			saveData(`./src/database/result/${sheetName}.json`, [])
+			saveData(`./src/database/replacing/result/${sheetName}.json`, [])
 			saveData(`./src/database/refused/${sheetName}.json`, [])
 			saveData('./src/database/noResult.json', [])
 			saveData('./src/database/replacing/noResult.json', [])
 			saveData('./src/database/replacing/sheetNames.json', [])
+			saveData('./src/database/newExcelUpload.json', false)
 
 			let result: Methodology = {};
 
@@ -81,7 +92,13 @@ export function analysisExcel(files: FileList) {
 				}
 			}
 
-			let methodology: MethodologyAndNumber = [convertedResult, 0];
+			// Sort the data categories alphabetically
+			const sortedMethodology = {};
+			Object.keys(convertedResult).forEach(key => {
+				sortedMethodology[key] = sortObjectAlphabetically(convertedResult[key]);
+			});
+
+			let methodology: MethodologyAndNumber = [sortedMethodology, 0];
 			saveData("./src/database/methodology/" + sheetName + ".json", JSON.parse(JSON.stringify(methodology).replace(/""/g, "0")))
 
 			if (sheetNameJSON[sheetName].length === 0) {
@@ -97,10 +114,11 @@ export function analysisExcel(files: FileList) {
 		}
 		saveData("./src/database/sheetNames.json", sheetNameJSON)
 
-		createwindow("100vh", "80vh", `<img src="src/img/back.svg" alt="back" class="btn-back cursor-pointer" id="back"><div class="methodology-window-title">Ընտրության մեթոդաբանություն</div><div class="methodology-text">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի միմյանց</div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn cursor-pointer" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn right-arrow cursor-pointer" id="nextPage"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="method-button" id="method-button">Հաստատել</button>`);
-		document.getElementById('back').addEventListener('click', start)
+		createwindow("100vh", "80vh", `<img src="src/img/back.svg" alt="back" class="btn-back cursor-pointer" id="back"><div class="methodology-window-title">Ընտրության մեթոդաբանություն</div><div class="methodology-text">Ուշադրություն դարձնել որ բոլոր չափորոշիչների գումարը հավասար լինի միմյանց</div><div class="next-back"><img src="src/img/back.svg" alt="back" class="next-back-btn cursor-pointer" id="previousPage"><div id="table-container"></div><img src="src/img/back.svg" alt="back" class="next-back-btn right-arrow cursor-pointer" id="nextPage"></div><div id="error-div"></div><div class="dots-div" id="dots-div"></div><button class="save-only-method" id="save-only-method">Չկատարել ընտրանք</button><button class="method-button" id="method-button">Հաստատել</button>`);
+		document.getElementById('back').addEventListener('click', ()=>{start()})
 		addtables(tables)
-		getMethodology()
+		document.getElementById('save-only-method').addEventListener('click', ()=>{getMethodology('./src/database/sheetNames.json', "./src/database/", true)})
+		document.getElementById("method-button").addEventListener("click", () => {getMethodology()})
 
 		const elements = document.getElementsByClassName('greater-or-equal') as HTMLCollectionOf<HTMLButtonElement>;
 
@@ -108,8 +126,8 @@ export function analysisExcel(files: FileList) {
 			elements[i].addEventListener('click', () => {
 				const value = elements[i].getAttribute("data-text")
 				if (value === '=') {
-					elements[i].innerText = "≥"
-					elements[i].setAttribute("data-text", "≥");
+					elements[i].innerText = "≤"
+					elements[i].setAttribute("data-text", "≤");
 				} else {
 					elements[i].innerText = "="
 					elements[i].setAttribute("data-text", "=");

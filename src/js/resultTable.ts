@@ -2,6 +2,8 @@ import { readData, saveData } from "./editData";
 import { replacingPeople } from "./replacingPeople";
 import { createExcelFile } from "./createExcelFile";
 import { createwindow } from "./window";
+import { mentionReplacedPeople } from "./mentionReplacedPeople";
+import { newExcelUpload } from "./newExcel";
 
 function jsonToTable(result, distinctive, sheetName) {
 	let table = document.createElement("table");
@@ -42,8 +44,9 @@ function jsonToTable(result, distinctive, sheetName) {
 			cell.textContent = rowData[header];
 			row.appendChild(cell);
 		});
-
-		row.appendChild(document.createElement("td"));
+		const replacingMention = document.createElement("td")
+		replacingMention.className=`${sheetName}-${rowData[distinctive]}`
+		row.appendChild(replacingMention);
 		tbody.appendChild(row);
 
 		const icon = document.getElementById("replaceing-people-img") as HTMLImageElement;
@@ -116,6 +119,7 @@ export async function resultTableAdd() {
 
 		for (const sheetName of onlySheetNames) {
 			const result = await readData(`./src/database/result/${sheetName}.json`);
+			console.log(result)
 			const title = document.createElement("h2");
 			title.innerText = sheetName;
 			title.classList.add("table-title");
@@ -127,18 +131,15 @@ export async function resultTableAdd() {
 
 			resultDiv.appendChild(tableContainer);
 		}
-
+		mentionReplacedPeople()
 		document.getElementById("start-div").classList.add("hide");
 		document.getElementById("result").classList.replace("hide", "result");
 
 		document.getElementById("export").addEventListener("click", createExcelFile);
-		document.getElementById("reset").addEventListener("click", () => {
-			createwindow("436px", "200px", "<div class='reset-div'><h2 class='methodology-title'>Վերագործարկում</h2><p>Սեղմելով հաստատել կջնջվի ամբողջ տվյալները և այլևս չեք կարողանա վերականգնել դրանք</p><button id='reset-confirm'>Հաստատել<buttton></div>")
-			document.getElementById("reset-confirm").addEventListener("click", () => {
-				saveData("./src/database/sheetNames.json", []);
-				window.location.reload();
-			})
-		})
+		document.getElementById("new-excel").addEventListener("click", ()=>{
+			saveData('./src/database/newExcelUpload.json', true); 
+			window.location.reload()
+		});
 
 		showHideButton.addEventListener("click", function () {
 			const icon = document.getElementById("replaceing-people-img") as HTMLImageElement;

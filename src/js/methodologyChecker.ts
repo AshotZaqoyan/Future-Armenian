@@ -1,4 +1,4 @@
-import { readData } from "./editData";
+import { readData, saveData } from "./editData";
 import { showPage } from "./methodologyTableAdd";
 import { choice } from "./choice";
 
@@ -6,7 +6,7 @@ export function pushError(error: string, pageNumber: number) {
 	document.getElementById('errorText' + pageNumber).innerHTML = error
 }
 
-export function methodologyChecker(sheetNamesPath = './src/database/sheetNames.json', path = "./src/database/") {
+export function methodologyChecker(sheetNamesPath = './src/database/sheetNames.json', path = "./src/database/", onlyMethodology = false) {
 	const sheetNamesJson = readData(sheetNamesPath);
 	sheetNamesJson.then((sheetNamesJson) => {
 		const sheetNames = Object.keys(sheetNamesJson);
@@ -19,8 +19,13 @@ export function methodologyChecker(sheetNamesPath = './src/database/sheetNames.j
 				if (pagesWithErrors.length !== 0) {
 					showPage(Math.min.apply(Math, pagesWithErrors));
 				} else {
-					(<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide");
-					choice(path);
+					if (onlyMethodology) {
+						saveData('./src/database/newExcelUpload.json', true)
+						window.location.reload()
+					} else {
+						(<HTMLDivElement>document.getElementById("bgtransparent")).classList.add("hide");
+						choice(path);
+					}
 				}
 				return;
 			}
@@ -79,7 +84,6 @@ export function methodologyChecker(sheetNamesPath = './src/database/sheetNames.j
 				processNextSheet(); // Retry processing the next sheet
 			});
 		}
-
 		processNextSheet(); // Start processing the first sheet
 	});
 }

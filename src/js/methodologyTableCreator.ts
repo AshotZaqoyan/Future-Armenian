@@ -57,8 +57,8 @@ export function methodologyTableCreate(methodologyAndNumber) {
 					greaterOrEqual.innerText = "="
 					greaterOrEqual.setAttribute("data-text", "=")
 				} else {
-					greaterOrEqual.innerText = "≥"
-					greaterOrEqual.setAttribute("data-text", "≥")
+					greaterOrEqual.innerText = "≤"
+					greaterOrEqual.setAttribute("data-text", "≤")
 				}
 				div.appendChild(greaterOrEqual);
 				inputTd.appendChild(div);
