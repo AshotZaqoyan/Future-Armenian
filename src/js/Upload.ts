@@ -1,7 +1,7 @@
 import { analysisExcel } from "./analysisExcel";
 import { excelChecker } from "./newExcel";
 
-export function upload(filePath: FileList, Button: HTMLButtonElement, situation) {
+export function upload(filePath: FileList, Button: HTMLButtonElement, situation: string) {
 	let TypeError = document.getElementById("TypeError");
 	let Name = document.getElementById("FileUploadName");
 
